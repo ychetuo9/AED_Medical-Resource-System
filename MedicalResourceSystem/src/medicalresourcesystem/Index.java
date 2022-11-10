@@ -27,27 +27,32 @@ public class Index extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        BtnHospitalAdminLogin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        BtnCommunityAdminLogin = new javax.swing.JButton();
+        BtnDoctorLogin = new javax.swing.JButton();
+        BtnSystemAdminLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        BtnPatientLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 153));
-        jButton1.setText("HOSPITAL ADMIN");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(330, 480, 180, 50);
+        BtnHospitalAdminLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BtnHospitalAdminLogin.setForeground(new java.awt.Color(0, 102, 153));
+        BtnHospitalAdminLogin.setText("HOSPITAL ADMIN");
+        BtnHospitalAdminLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHospitalAdminLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnHospitalAdminLogin);
+        BtnHospitalAdminLogin.setBounds(330, 480, 180, 50);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doctor.png"))); // NOI18N
         jPanel1.add(jLabel2);
@@ -65,33 +70,53 @@ public class Index extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(360, 320, 130, 160);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 153));
-        jButton2.setText("COMMUNITY ADMIN");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(580, 480, 200, 50);
+        BtnCommunityAdminLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BtnCommunityAdminLogin.setForeground(new java.awt.Color(0, 102, 153));
+        BtnCommunityAdminLogin.setText("COMMUNITY ADMIN");
+        BtnCommunityAdminLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCommunityAdminLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnCommunityAdminLogin);
+        BtnCommunityAdminLogin.setBounds(580, 480, 200, 50);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 102, 153));
-        jButton3.setText("DOCTOR");
-        jPanel1.add(jButton3);
-        jButton3.setBounds(1060, 480, 130, 50);
+        BtnDoctorLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BtnDoctorLogin.setForeground(new java.awt.Color(0, 102, 153));
+        BtnDoctorLogin.setText("DOCTOR");
+        BtnDoctorLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDoctorLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnDoctorLogin);
+        BtnDoctorLogin.setBounds(1060, 480, 130, 50);
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 102, 153));
-        jButton4.setText("ADMIN");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(130, 480, 130, 50);
+        BtnSystemAdminLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BtnSystemAdminLogin.setForeground(new java.awt.Color(0, 102, 153));
+        BtnSystemAdminLogin.setText("ADMIN");
+        BtnSystemAdminLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSystemAdminLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnSystemAdminLogin);
+        BtnSystemAdminLogin.setBounds(130, 480, 130, 50);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/patient.png"))); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(850, 320, 130, 160);
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 102, 153));
-        jButton5.setText("PATIENT");
-        jPanel1.add(jButton5);
-        jButton5.setBounds(850, 480, 130, 50);
+        BtnPatientLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BtnPatientLogin.setForeground(new java.awt.Color(0, 102, 153));
+        BtnPatientLogin.setText("PATIENT");
+        BtnPatientLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPatientLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnPatientLogin);
+        BtnPatientLogin.setBounds(850, 480, 130, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mrmbackground.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -111,6 +136,41 @@ public class Index extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnSystemAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSystemAdminLoginActionPerformed
+        // TODO add your handling code here:
+       SystemLogin rl=new SystemLogin();
+       rl.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BtnSystemAdminLoginActionPerformed
+
+    private void BtnHospitalAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHospitalAdminLoginActionPerformed
+        // TODO add your handling code here:
+       HospitalLogin rl=new HospitalLogin();
+       rl.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BtnHospitalAdminLoginActionPerformed
+
+    private void BtnCommunityAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCommunityAdminLoginActionPerformed
+        // TODO add your handling code here:
+       CommunityLogin rl=new CommunityLogin();
+       rl.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BtnCommunityAdminLoginActionPerformed
+
+    private void BtnPatientLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPatientLoginActionPerformed
+        // TODO add your handling code here:
+       PatientLogin rl=new PatientLogin();
+       rl.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BtnPatientLoginActionPerformed
+
+    private void BtnDoctorLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDoctorLoginActionPerformed
+        // TODO add your handling code here:
+       DoctorLogin rl=new DoctorLogin();
+       rl.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BtnDoctorLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,11 +208,11 @@ public class Index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton BtnCommunityAdminLogin;
+    private javax.swing.JButton BtnDoctorLogin;
+    private javax.swing.JButton BtnHospitalAdminLogin;
+    private javax.swing.JButton BtnPatientLogin;
+    private javax.swing.JButton BtnSystemAdminLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
