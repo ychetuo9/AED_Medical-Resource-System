@@ -58,7 +58,6 @@ public class SystemLogin extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
@@ -95,7 +94,7 @@ public class SystemLogin extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 160, 35));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 120, 35));
 
         btnClear.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
@@ -105,11 +104,7 @@ public class SystemLogin extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(749, 460, 150, 35));
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton4.setText("Forget Password ?");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, -1, 35));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 460, 120, 35));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit small.png"))); // NOI18N
@@ -119,7 +114,7 @@ public class SystemLogin extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 540, 150, 35));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 460, 120, 35));
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -138,23 +133,23 @@ public class SystemLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 //**************************************************************
-//        String email = txtEmail.getText();
-//        String password = txtPassword.getText();
-//        User user = null;
-//        user = UserDao.login(email,password);
-//        if(user == null){
-//            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-//        }else{
-//            if(user.getStatus().equals("false")){
-//                ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
-//                JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
-//                clear();
-//            }
-//            if(user.getStatus().equals("true")){
-//                setVisible(false);
-//                new Home(email).setVisible(true);
-//            }
-//        }
+        String email = txtEmail.getText();
+        String password = txtPassword.getText();
+        User user = null;
+        user = UserDao.login(email,password);
+        if(user == null){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(user.getStatus().equals("false")){
+                ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
+                JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
+                clear();
+            }
+            if(user.getStatus().equals("true")){
+                setVisible(false);
+                new SystemAdminHomePage().setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 //**************************************************************
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -218,7 +213,6 @@ public class SystemLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

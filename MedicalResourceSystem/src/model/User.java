@@ -8,15 +8,12 @@ package model;
  *
  * @author yanyanchen
  */
-public class User {
+public class User{
     private int id;
     private String name;
     private String email;
     private String mobileNumber;
-    private String address;
     private String password;
-    private String securityQuestion;
-    private String answer;
     private String status;
 
     public int getId() {
@@ -51,36 +48,12 @@ public class User {
         this.mobileNumber = mobileNumber;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getSecurityQuestion() {
-        return securityQuestion;
-    }
-
-    public void setSecurityQuestion(String securityQuestion) {
-        this.securityQuestion = securityQuestion;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
     }
 
     public String getStatus() {

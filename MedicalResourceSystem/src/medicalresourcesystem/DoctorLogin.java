@@ -4,6 +4,11 @@
  */
 package medicalresourcesystem;
 
+import dao.UserDao;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import model.User;
+
 /**
  *
  * @author yanyanchen
@@ -50,7 +55,6 @@ public class DoctorLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
-        jButton4 = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
@@ -89,10 +93,6 @@ public class DoctorLogin extends javax.swing.JFrame {
         });
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 463, -1));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton4.setText("Forget Password ?");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, -1, 35));
-
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit small.png"))); // NOI18N
         btnBack.setText(" Go Back");
@@ -111,17 +111,17 @@ public class DoctorLogin extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 120, 35));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 140, 35));
 
         btnSignUp.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnSignUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
-        btnSignUp.setText("SignUp");
+        btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignUpActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 460, 120, 35));
+        getContentPane().add(btnSignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, 140, 35));
 
         btnClear.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
@@ -131,7 +131,7 @@ public class DoctorLogin extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(779, 460, 120, 35));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(749, 460, 150, 35));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LoginPage.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 730));
@@ -159,29 +159,29 @@ public class DoctorLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         //**************************************************************
-        //        String email = txtEmail.getText();
-        //        String password = txtPassword.getText();
-        //        User user = null;
-        //        user = UserDao.login(email,password);
-        //        if(user == null){
-            //            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
-            //        }else{
-            //            if(user.getStatus().equals("false")){
-                //                ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
-                //                JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
-                //                clear();
-                //            }
-            //            if(user.getStatus().equals("true")){
-                //                setVisible(false);
-                //                new Home(email).setVisible(true);
-                //            }
-            //        }
+        String email = txtEmail.getText();
+        String password = txtPassword.getText();
+        User user = null;
+        user = UserDao.login(email,password);
+        if(user == null){
+            JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(user.getStatus().equals("false")){
+                ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
+                JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
+                clear();
+            }
+            if(user.getStatus().equals("true")){
+                setVisible(false);
+                new DoctorHomePage(email).setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Signup in=new Signup();
+        SignUpPage in=new SignUpPage();
         in.setVisible(true);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
@@ -230,7 +230,6 @@ public class DoctorLogin extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignUp;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

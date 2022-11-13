@@ -4,6 +4,8 @@
  */
 package medicalresourcesystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yanyanchen
@@ -37,6 +39,7 @@ public class Index extends javax.swing.JFrame {
         BtnSystemAdminLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         BtnPatientLogin = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,6 +121,18 @@ public class Index extends javax.swing.JFrame {
         jPanel1.add(BtnPatientLogin);
         BtnPatientLogin.setBounds(850, 480, 130, 50);
 
+        btnExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnExit.setForeground(new java.awt.Color(0, 102, 153));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
+        btnExit.setText("EXIT SYSTEM");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnExit);
+        btnExit.setBounds(560, 630, 190, 60);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mrmbackground.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1280, 730);
@@ -172,6 +187,14 @@ public class Index extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_BtnDoctorLoginActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(null,"Do you really want to Close Application","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -213,6 +236,7 @@ public class Index extends javax.swing.JFrame {
     private javax.swing.JButton BtnHospitalAdminLogin;
     private javax.swing.JButton BtnPatientLogin;
     private javax.swing.JButton BtnSystemAdminLogin;
+    private javax.swing.JButton btnExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

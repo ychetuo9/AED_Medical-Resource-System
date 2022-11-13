@@ -19,7 +19,6 @@ public class DbOperations {
             st.executeUpdate(Query);
             if(!msg.equals(""))
                 JOptionPane.showMessageDialog(null, msg);
-            
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e, "Message", JOptionPane.ERROR_MESSAGE);
