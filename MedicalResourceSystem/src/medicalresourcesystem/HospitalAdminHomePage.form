@@ -108,6 +108,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="View Upadate &amp; Delete Doctor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewDoctorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewPatient">
       <Properties>
@@ -116,6 +119,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="View Update &amp; Delete Patient"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewPatientActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewHospital">
       <Properties>
@@ -135,6 +141,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Create Doctor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateDoctorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>

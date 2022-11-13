@@ -4,6 +4,18 @@
  */
 package medicalresourcesystem;
 
+import dao.CityDao;
+import dao.CommunityDao;
+import dao.HospitalDirectoryDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import model.City;
+import model.Community;
+import model.Hospital;
+
 /**
  *
  * @author yanyanchen
@@ -15,6 +27,17 @@ public class ViewUpdateDeleteHospital extends javax.swing.JFrame {
      */
     public ViewUpdateDeleteHospital() {
         initComponents();
+        btnUpdate.setEnabled(false);
+        btnDelete.setEnabled(false);
+    }
+    public void validateField(){
+        String name = txtName.getText();
+        String community=(String)cbbCommunity.getSelectedItem();
+        String city=(String)cbbCity.getSelectedItem();
+        if(!name.equals("")&&!community.equals("")&&city!=null)
+            btnUpdate.setEnabled(true);
+        else
+            btnUpdate.setEnabled(false);
     }
 
     /**
@@ -26,21 +49,232 @@ public class ViewUpdateDeleteHospital extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel7 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnClear = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbbCommunity = new javax.swing.JComboBox<>();
+        cbbCity = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel7.setText("City");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, -1, -1));
+
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 246, -1));
+
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel6.setText("Community");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel5.setText("Name");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel3.setText("*Click on row to delete Hospital");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 636, -1, -1));
+
+        jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Community", "City"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 162, -1, -1));
+
+        btnClear.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 450, -1, -1));
+
+        btnDelete.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setText("View Hospital");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(819, 121, -1, -1));
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(1232, 24, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/category.png"))); // NOI18N
+        jLabel1.setText("View Update & Delete Hospital");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 24, -1, -1));
+
+        cbbCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        getContentPane().add(cbbCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 246, -1));
+
+        cbbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        getContentPane().add(cbbCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 240, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setText("ID");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+
+        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblId.setText("00");
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, 20));
+
+        btnUpdate.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        validateField();
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        String id = model.getValueAt(index,0).toString();
+        lblId.setText(id);
+        String name = model.getValueAt(index,1).toString();
+        txtName.setText(name);
+        String community = model.getValueAt(index,2).toString();
+        String city = model.getValueAt(index,3).toString();
+
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        
+        cbbCommunity.removeAllItems();
+        cbbCommunity.addItem(community);
+        
+        ArrayList<Community> communityList = CommunityDao.getAllRecords();
+        Iterator<Community> communityItr=communityList.iterator();
+        while(communityItr.hasNext()){
+            Community communityObj = communityItr.next();
+            if(!communityObj.getName().equals(community))
+                cbbCommunity.addItem(communityObj.getName());
+        }
+
+        cbbCity.removeAllItems();
+        cbbCity.addItem(city);
+        
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        
+        ArrayList<City> cityList = CityDao.getAllRecords();
+        Iterator<City> cityItr=cityList.iterator();
+        while(cityItr.hasNext()){
+            City cityObj = cityItr.next();
+            if(!cityObj.getName().equals(city))
+                cbbCity.addItem(cityObj.getName());
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        new ViewUpdateDeleteHospital().setVisible(true);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String id = lblId.getText();
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to Delete the Hospital?","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            HospitalDirectoryDao.delete(id);
+            setVisible(false);
+            new ViewUpdateDeleteHospital().setVisible(true);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        SystemAdminHomePage in=new SystemAdminHomePage();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Hospital> hospitalList = HospitalDirectoryDao.getAllRecords();
+        Iterator<Hospital> itrHospital = hospitalList.iterator();
+        while(itrHospital.hasNext()){
+            Hospital hospitalObj = itrHospital.next();
+            dtm.addRow(new Object[]{hospitalObj.getId(),hospitalObj.getName(),hospitalObj.getCommunity(),hospitalObj.getCity()});
+        }
+        
+        ArrayList<Community> communityList = CommunityDao.getAllRecords();
+        Iterator<Community> itrCommunity = communityList.iterator();
+        while(itrCommunity.hasNext()){
+            Community communityObj = itrCommunity.next();
+            cbbCommunity.addItem(communityObj.getName());
+        }
+        ArrayList<City> cityList = CityDao.getAllRecords();
+        Iterator<City> itrCity = cityList.iterator();
+        while(itrCity.hasNext()){
+            City cityObj = itrCity.next();
+            cbbCity.addItem(cityObj.getName());
+        }
+        
+        
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -78,5 +312,22 @@ public class ViewUpdateDeleteHospital extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cbbCity;
+    private javax.swing.JComboBox<String> cbbCommunity;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

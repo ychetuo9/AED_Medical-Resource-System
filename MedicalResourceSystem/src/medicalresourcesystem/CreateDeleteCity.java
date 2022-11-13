@@ -216,7 +216,7 @@ public class CreateDeleteCity extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new CommunityAdminHomePage().setVisible(true);
+        new CreateDeleteCity().setVisible(true);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

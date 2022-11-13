@@ -30,8 +30,6 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        btnPatient = new javax.swing.JButton();
-        btnDoctor = new javax.swing.JButton();
         btnEncounter = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         btnVerifyUser = new javax.swing.JButton();
@@ -42,23 +40,9 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnPatient.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnPatient.setText("Patient Management");
-        btnPatient.setToolTipText("");
-        getContentPane().add(btnPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 230, 55));
-
-        btnDoctor.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnDoctor.setText("Doctorn Management");
-        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDoctorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 230, 55));
-
         btnEncounter.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnEncounter.setText("Encounters Management");
-        getContentPane().add(btnEncounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 340, -1, 55));
+        getContentPane().add(btnEncounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, -1, 55));
 
         btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
@@ -68,12 +52,12 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
                 btnLogOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 230, 55));
+        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, 230, 55));
 
         btnVerifyUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnVerifyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/verify users.png"))); // NOI18N
         btnVerifyUser.setText("Verify User");
-        getContentPane().add(btnVerifyUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 230, 55));
+        getContentPane().add(btnVerifyUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 230, 55));
 
         btnHospital1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnHospital1.setText("Hospital Management");
@@ -91,7 +75,7 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 230, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 230, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adminPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, -1, 730));
@@ -107,10 +91,6 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
             new Index().setVisible(true);
         }
     }//GEN-LAST:event_btnLogOutActionPerformed
-
-    private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDoctorActionPerformed
 
     private void btnHospital1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospital1ActionPerformed
         // TODO add your handling code here:
@@ -163,11 +143,9 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDoctor;
     private javax.swing.JButton btnEncounter;
     private javax.swing.JButton btnHospital1;
     private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton btnPatient;
     private javax.swing.JButton btnVerifyUser;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

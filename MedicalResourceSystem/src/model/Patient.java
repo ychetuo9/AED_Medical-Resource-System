@@ -8,8 +8,8 @@ package model;
  *
  * @author yanyanchen
  */
-public class Patient extends User{
-    private int id;
+public class Patient{
+    private String id;
     private String name;
     private String email;
     private String mobileNumber;
@@ -19,19 +19,19 @@ public class Patient extends User{
     String age;
     String gender;
     String address;
-    Community community;
-    House house;
+    String community;
+    String house;
     VitalSigns vitalsigns;
 
     public Patient(){
         super();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,12 +91,20 @@ public class Patient extends User{
         this.address = address;
     }
 
-    public Community getCommunity() {
+    public String getCommunity() {
         return community;
     }
 
-    public void setCommunity(Community community) {
+    public void setCommunity(String community) {
         this.community = community;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
     }
 
     public VitalSigns getVitalsigns() {

@@ -8,25 +8,26 @@ package model;
  *
  * @author yanyanchen
  */
-public class Doctor extends User{
-    Hospital hospital;
+public class Doctor{
+    String hospital;
     private String age;
     private String gender;
     private String specialty;
     private String positionTitle;
     
-    private int id;
+    private String id;
     private String name;
     private String email;
     private String mobileNumber;
     private String password;
     private String status;
 
-    public int getId() {
+    
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -108,11 +109,11 @@ public class Doctor extends User{
         this.positionTitle = positionTitle;
     }
 
-    public Hospital getHospital() {
+    public String getHospital() {
         return hospital;
     }
 
-    public void setHospital(Hospital hospital) {
+    public void setHospital(String hospital) {
         this.hospital = hospital;
     }
     

@@ -244,6 +244,9 @@ public class ViewUpdateDeleteHouse extends javax.swing.JFrame {
         String name = model.getValueAt(index,1).toString();
         txtName.setText(name);
         String community = model.getValueAt(index,2).toString();
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        
         cbbCommunity.removeAllItems();
         cbbCommunity.addItem(community);
         
@@ -306,6 +309,13 @@ public class ViewUpdateDeleteHouse extends javax.swing.JFrame {
         while(itrHouse.hasNext()){
             House houseObj = itrHouse.next();
             dtm.addRow(new Object[]{houseObj.getId(),houseObj.getName(),houseObj.getCommunity()});
+        }
+        
+        ArrayList<Community> communityList = CommunityDao.getAllRecords();
+        Iterator<Community> itrCommunity = communityList.iterator();
+        while(itrCommunity.hasNext()){
+            Community communityObj = itrCommunity.next();
+            cbbCommunity.addItem(communityObj.getName());
         }
     }//GEN-LAST:event_formComponentShown
 

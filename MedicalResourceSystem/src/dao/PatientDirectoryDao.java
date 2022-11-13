@@ -5,6 +5,7 @@
 package dao;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Patient;
 import model.User;
@@ -17,6 +18,8 @@ public class PatientDirectoryDao {
     public static void save(Patient patient){
         String query = "insert into user(name,email,mobileNumber,password,status) values('"+patient.getName()+"','"+patient.getEmail()+"','"+patient.getMobileNumber()+"','"+patient.getPassword()+"','false')";
         DbOperations.setDataOrDelete(query, "Registered Successfully! Wait for Admin Approval!");
+        String queryToPatient = "insert into patient(name,email,mobileNumber,password,status,address,house,community,age,gender) values('"+patient.getName()+"','"+patient.getEmail()+"','"+patient.getMobileNumber()+"','"+patient.getPassword()+"','false','"+patient.getAddress()+"','"+patient.getHouse()+"',"+patient.getCommunity()+"','"+patient.getAge()+"','"+patient.getGender()+"')";
+        DbOperations.setDataOrDelete(query, "New Patient Account Added!");
     }
     
     public static Patient login(String email,String password){
@@ -32,4 +35,43 @@ public class PatientDirectoryDao {
         }
         return patient;
     }
+    
+    public static void delete(String id){
+        String query ="delete from patient where id='"+id+"'";
+        DbOperations.setDataOrDelete(query, "Patient Deleted Successfully!");
+    }
+    
+    public static ArrayList<Patient> getAllRecords(){
+        ArrayList<Patient> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs1 = DbOperations.getData("select *from doctor");
+            while(rs1.next()){
+                Patient patient = new Patient();
+                patient.setId(rs1.getString("id"));
+                patient.setName(rs1.getString("name"));
+                patient.setEmail(rs1.getString("email"));
+                patient.setGender(rs1.getString("gender"));
+                patient.setAge(rs1.getString("age"));
+                patient.setMobileNumber(rs1.getString("mobileNumber"));
+                patient.setHouse(rs1.getString("house"));
+                patient.setCommunity(rs1.getString("community"));
+                patient.setAddress(rs1.getString("address"));
+
+                arrayList.add(patient);
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
+    public static void update(Patient patient){
+        String query = "update patient set name='"+patient.getName()+"',email='"+patient.getEmail()+"',gender='"+patient.getGender()+"',age='"+patient.getAge()+"',mobileNumber='"+patient.getMobileNumber()+"',house='"+patient.getHouse()+"',community"+patient.getCommunity()+"',address='"+patient.getAddress()+"' where id='"+patient.getId()+"'";
+        DbOperations.setDataOrDelete(query, "Patient Updated Successfully!");
+    }
+    
+    
+    
+    
 }

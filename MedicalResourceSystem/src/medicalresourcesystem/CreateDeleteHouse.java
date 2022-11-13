@@ -155,7 +155,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new CreateDeleteHospital().setVisible(true);
+        new CreateDeleteHouse().setVisible(true);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

@@ -31,7 +31,8 @@ public class CreateDeleteCommunity extends javax.swing.JFrame {
     public void validateFields(){
         String name=txtName.getText();
         String zipcode=txtZipCode.getText();
-        if(!name.equals("")&& !zipcode.equals(""))
+        String city=(String)cbbCity.getSelectedItem();
+        if(!name.equals("")&&!city.equals("")&& !zipcode.equals(""))
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
@@ -178,7 +179,7 @@ public class CreateDeleteCommunity extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        new CommunityAdminHomePage().setVisible(true);
+        new CreateDeleteCommunity().setVisible(true);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

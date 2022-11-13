@@ -4,7 +4,16 @@
  */
 package medicalresourcesystem;
 
+import dao.CityDao;
+import dao.CommunityDao;
+import dao.HouseDao;
 import dao.PatientDirectoryDao;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
+import model.City;
+import model.Community;
+import model.House;
 import model.Patient;
 
 /**
@@ -20,6 +29,7 @@ public class PatientSignUpPage extends javax.swing.JFrame {
      */
     public PatientSignUpPage() {
         initComponents();
+        btnSave.setEnabled(false);
     }
     
     public void clear(){
@@ -27,20 +37,34 @@ public class PatientSignUpPage extends javax.swing.JFrame {
         txtEmail.setText("");
         txtMobileNumber.setText("");
         txtPassword.setText("");
-        btnSave.setEnabled(false);
-        txtEmail.setText("");
-        txtPassword.setText("");
+        txtAddress.setText("");
+        cbbCommunity.setSelectedItem("");
+        cbbHouse.setSelectedItem("");
         btnGroupGender.clearSelection();
+        btnSave.setEnabled(false);
     }
     
     public void validateFields(){
+        String name=txtName.getText();
         String email=txtEmail.getText();
+        String mobileNumber=txtMobileNumber.getText();
         String password=txtPassword.getText();
-        if(email.matches(emailPattern) && !password.equals("")){
+        String address=txtAddress.getText();
+        String house=(String)cbbHouse.getSelectedItem();
+        String community=(String)cbbCommunity.getSelectedItem();
+        String age=(String)cbbAge.getSelectedItem();
+        String gender = "";
+        if(rbtnFemale.isSelected()){
+            gender="Female";
+        }
+        if(rbtnMale.isSelected()){
+            gender="Male";
+        }
+
+        if(!name.equals("")&& !address.equals("")&&!house.equals("")&&!community.equals("")&&!age.equals("")&&!gender.equals("")&&email.matches(emailPattern) && mobileNumber.matches(mobileNumberPattern)&& mobileNumber.length()==10 && !password.equals(""))
             btnSave.setEnabled(true);
-        }else{
-            btnSave.setEnabled(false);
-        }     
+        else
+            btnSave.setEnabled(false);     
     }
 
     /**
@@ -71,21 +95,29 @@ public class PatientSignUpPage extends javax.swing.JFrame {
         cbbAge = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtHouse = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtCommunity = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
+        cbbHouse = new javax.swing.JComboBox<>();
+        cbbCommunity = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("Patient SignUp");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(525, 210, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel3.setText("Name");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 289, -1, -1));
 
         txtName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -93,9 +125,11 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 txtNameKeyReleased(evt);
             }
         });
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 287, 373, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel4.setText("Email");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 339, -1, -1));
 
         txtEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -103,9 +137,11 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 txtEmailKeyReleased(evt);
             }
         });
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 337, 373, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel5.setText("Mobile Number");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 464, -1, -1));
 
         txtMobileNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -113,6 +149,7 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 txtMobileNumberKeyReleased(evt);
             }
         });
+        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 462, 373, -1));
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -120,9 +157,11 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 txtPasswordKeyReleased(evt);
             }
         });
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 626, 373, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel7.setText("Password");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 628, -1, -1));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
@@ -132,6 +171,7 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 682, 90, -1));
 
         btnClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
@@ -141,6 +181,7 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 682, 90, -1));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
@@ -150,46 +191,41 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 682, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel6.setText("Gender");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 380, -1, -1));
 
         btnGroupGender.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnMale.setText("Male");
+        getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 378, -1, -1));
 
         btnGroupGender.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnFemale.setText("Female");
+        getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 378, -1, -1));
 
         cbbAge.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+        getContentPane().add(cbbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 419, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel8.setText("Age");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 422, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel9.setText("House");
-
-        txtHouse.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtHouse.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtHouseKeyReleased(evt);
-            }
-        });
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 504, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel10.setText("Community");
-
-        txtCommunity.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCommunity.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCommunityKeyReleased(evt);
-            }
-        });
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 545, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel11.setText("Address");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 587, -1, -1));
 
         txtAddress.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAddress.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -197,100 +233,11 @@ public class PatientSignUpPage extends javax.swing.JFrame {
                 txtAddressKeyReleased(evt);
             }
         });
+        getContentPane().add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 585, 373, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(525, 525, 525)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(334, 334, 334)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel11))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbtnFemale)
-                                .addGap(100, 100, 100)
-                                .addComponent(rbtnMale))
-                            .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbbAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHouse, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBack))
-                                .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(419, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLabel2)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(rbtnFemale)
-                    .addComponent(rbtnMale))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(cbbAge))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtHouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnClear)
-                    .addComponent(btnBack))
-                .addGap(147, 147, 147))
-        );
+        getContentPane().add(cbbHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 503, 373, -1));
+
+        getContentPane().add(cbbCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 544, 373, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -322,6 +269,20 @@ public class PatientSignUpPage extends javax.swing.JFrame {
         patientUser.setEmail(txtEmail.getText());
         patientUser.setMobileNumber(txtMobileNumber.getText());
         patientUser.setPassword(txtPassword.getText());
+        patientUser.setAddress(txtAddress.getText());
+        patientUser.setHouse((String)cbbHouse.getSelectedItem());
+        patientUser.setCommunity((String)cbbCommunity.getSelectedItem());
+        patientUser.setAge((String)cbbAge.getSelectedItem());
+        
+        String gender = "";
+        if(rbtnFemale.isSelected()){
+            gender="Female";
+        }
+        if(rbtnMale.isSelected()){
+            gender="Male";
+        }
+        patientUser.setGender(gender);
+
         PatientDirectoryDao.save(patientUser);
         clear();
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -338,17 +299,28 @@ public class PatientSignUpPage extends javax.swing.JFrame {
         in.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void txtHouseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHouseKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHouseKeyReleased
-
-    private void txtCommunityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCommunityKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCommunityKeyReleased
-
     private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressKeyReleased
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        ArrayList<Community> communityList = CommunityDao.getAllRecords();
+        Iterator<Community> itrCommunity = communityList.iterator();
+        while(itrCommunity.hasNext()){
+            Community communityObj = itrCommunity.next();
+            cbbCommunity.addItem(communityObj.getName());
+        }
+        ArrayList<House> houseList = HouseDao.getAllRecords();
+        Iterator<House> itrHouse = houseList.iterator();
+        while(itrHouse.hasNext()){
+            House houseObj = itrHouse.next();
+            cbbHouse.addItem(houseObj.getName());
+        }
+        
+        
+        
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
@@ -391,6 +363,8 @@ public class PatientSignUpPage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroupGender;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbbAge;
+    private javax.swing.JComboBox<String> cbbCommunity;
+    private javax.swing.JComboBox<String> cbbHouse;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -404,9 +378,7 @@ public class PatientSignUpPage extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnFemale;
     private javax.swing.JRadioButton rbtnMale;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtHouse;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;

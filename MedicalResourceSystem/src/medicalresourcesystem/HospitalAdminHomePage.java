@@ -58,9 +58,19 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
 
         btnViewDoctor.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewDoctor.setText("View Upadate & Delete Doctor");
+        btnViewDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDoctorActionPerformed(evt);
+            }
+        });
 
         btnViewPatient.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewPatient.setText("View Update & Delete Patient");
+        btnViewPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewPatientActionPerformed(evt);
+            }
+        });
 
         btnViewHospital.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewHospital.setText("View Update & Delete Hospital");
@@ -72,6 +82,11 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
 
         btnCreateDoctor.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreateDoctor.setText("Create Doctor");
+        btnCreateDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateDoctorActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +146,7 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
     private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        CreateDeleteCommunity in=new CreateDeleteCommunity();
+        CreateDeletePatient in=new CreateDeletePatient();
         in.setVisible(true);
     }//GEN-LAST:event_btnCreatePatientActionPerformed
 
@@ -151,7 +166,32 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
 
     private void btnViewHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHospitalActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        ViewUpdateDeleteHospital in=new ViewUpdateDeleteHospital();
+        in.setVisible(true);
     }//GEN-LAST:event_btnViewHospitalActionPerformed
+
+    private void btnViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPatientActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ViewUpdateDeletePatient in=new ViewUpdateDeletePatient();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnViewPatientActionPerformed
+
+    private void btnCreateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDoctorActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CreateDeleteDoctor in=new CreateDeleteDoctor();
+        in.setVisible(true);
+        
+    }//GEN-LAST:event_btnCreateDoctorActionPerformed
+
+    private void btnViewDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDoctorActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ViewUpdateDeleteDoctor in=new ViewUpdateDeleteDoctor();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnViewDoctorActionPerformed
 
     /**
      * @param args the command line arguments
