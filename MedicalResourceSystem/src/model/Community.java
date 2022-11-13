@@ -14,9 +14,8 @@ public class Community {
     String id;
     String name;
     String city;
-    String address;
     String zipcode;
-    ArrayList<House> arraylist;
+    String house;
 
     public String getName() {
         return name;
@@ -34,14 +33,6 @@ public class Community {
         this.city = city;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getZipcode() {
         return zipcode;
     }
@@ -57,7 +48,14 @@ public class Community {
     public void setId(String id) {
         this.id = id;
     }
-    
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
     
     
 }

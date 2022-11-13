@@ -15,7 +15,7 @@ import model.Community;
  */
 public class CommunityDao {
     public static void save(Community community){
-        String query = "insert into community(name,city,zipcode,address) values('"+community.getName()+"','"+community.getCity()+"','"+community.getZipcode()+"','"+community.getAddress()+")";
+        String query = "insert into community(name,city,zipcode,house) values('"+community.getName()+"','"+community.getCity()+"','"+community.getZipcode()+"','"+community.getHouse()+"')";
         DbOperations.setDataOrDelete(query, "Community Added Successfully!");
     }
     
@@ -25,11 +25,11 @@ public class CommunityDao {
             ResultSet rs = DbOperations.getData("select *from community");
             while(rs.next()){
                 Community community = new Community();
-                community.setId("id");
-                community.setName("name");
-                community.setZipcode("zipcode");
-                community.setCity("city");
-                community.setAddress("address");
+                community.setId(rs.getString("id"));
+                community.setName(rs.getString("name"));
+                community.setZipcode(rs.getString("zipcode"));
+                community.setCity(rs.getString("city"));
+                community.setHouse(rs.getString("house"));
                 arrayList.add(community);
                 
             }
@@ -40,8 +40,13 @@ public class CommunityDao {
      
     }
     
-    public static void delete(String name){
-        String query ="delete from community where name='"+name+"'";
+    public static void delete(String id){
+        String query ="delete from community where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "Community Deleted Successfully!");
+    }
+    
+    public static void update(Community community){
+        String query = "update community set name='"+community.getName()+"',zipcode='"+community.getZipcode()+"',city='"+community.getCity()+"' where id='"+community.getId()+"'";
+        DbOperations.setDataOrDelete(query, "Community Updated Successfully!");
     }
 }

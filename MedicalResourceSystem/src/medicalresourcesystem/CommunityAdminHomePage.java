@@ -30,21 +30,151 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        btnCreateCity = new javax.swing.JButton();
+        btnCreateCommunity = new javax.swing.JButton();
+        btnCreateHouse = new javax.swing.JButton();
+        btnViewCommunity = new javax.swing.JButton();
+        btnViewHouse = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnCreateCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnCreateCity.setText("Create City");
+        btnCreateCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateCityActionPerformed(evt);
+            }
+        });
+
+        btnCreateCommunity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnCreateCommunity.setText("Create Community");
+        btnCreateCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateCommunityActionPerformed(evt);
+            }
+        });
+
+        btnCreateHouse.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnCreateHouse.setText("Create House");
+        btnCreateHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateHouseActionPerformed(evt);
+            }
+        });
+
+        btnViewCommunity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnViewCommunity.setText("View Update & Delete Community");
+        btnViewCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCommunityActionPerformed(evt);
+            }
+        });
+
+        btnViewHouse.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        btnViewHouse.setText("View Upadate & Delete House");
+        btnViewHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewHouseActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1282, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCreateHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreateCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
+                        .addGap(276, 276, 276)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnViewCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(193, 193, 193))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCreateCity, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jButton3)
+                .addGap(139, 139, 139)
+                .addComponent(btnCreateCity, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCreateHouse, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                    .addComponent(btnViewCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCreateCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                    .addComponent(btnViewHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(253, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCityActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CreateDeleteCity in=new CreateDeleteCity();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnCreateCityActionPerformed
+
+    private void btnCreateCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCommunityActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CreateDeleteCommunity in=new CreateDeleteCommunity();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnCreateCommunityActionPerformed
+
+    private void btnCreateHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateHouseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CreateDeleteHouse in=new CreateDeleteHouse();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnCreateHouseActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        SystemAdminHomePage in=new SystemAdminHomePage();
+        in.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnViewCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCommunityActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ViewUpdateDeleteCommunity in=new ViewUpdateDeleteCommunity();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnViewCommunityActionPerformed
+
+    private void btnViewHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHouseActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ViewUpdateDeleteHouse in=new ViewUpdateDeleteHouse();
+        in.setVisible(true);    
+    }//GEN-LAST:event_btnViewHouseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +212,12 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateCity;
+    private javax.swing.JButton btnCreateCommunity;
+    private javax.swing.JButton btnCreateHouse;
+    private javax.swing.JButton btnViewCommunity;
+    private javax.swing.JButton btnViewHouse;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

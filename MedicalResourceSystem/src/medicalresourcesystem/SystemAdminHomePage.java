@@ -45,7 +45,7 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
         btnPatient.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnPatient.setText("Patient Management");
         btnPatient.setToolTipText("");
-        getContentPane().add(btnPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 230, 55));
+        getContentPane().add(btnPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 230, 55));
 
         btnDoctor.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnDoctor.setText("Doctorn Management");
@@ -54,11 +54,11 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
                 btnDoctorActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 230, 55));
+        getContentPane().add(btnDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 230, 55));
 
         btnEncounter.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnEncounter.setText("Encounters Management");
-        getContentPane().add(btnEncounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, -1, 55));
+        getContentPane().add(btnEncounter, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 340, -1, 55));
 
         btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
@@ -68,12 +68,12 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
                 btnLogOutActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 500, 230, 55));
+        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 230, 55));
 
         btnVerifyUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnVerifyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/verify users.png"))); // NOI18N
         btnVerifyUser.setText("Verify User");
-        getContentPane().add(btnVerifyUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 230, 55));
+        getContentPane().add(btnVerifyUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 230, 55));
 
         btnHospital1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnHospital1.setText("Hospital Management");
@@ -82,16 +82,16 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
                 btnHospital1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHospital1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 230, 55));
+        getContentPane().add(btnHospital1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 230, 55));
 
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jButton1.setText("Community Management");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 250, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, 230, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/adminPage.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, -1, 730));
@@ -114,14 +114,14 @@ public class SystemAdminHomePage extends javax.swing.JFrame {
 
     private void btnHospital1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospital1ActionPerformed
         // TODO add your handling code here:
-        AdminHospitalManagement rl=new AdminHospitalManagement();
+        HospitalAdminHomePage rl=new HospitalAdminHomePage();
         rl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnHospital1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        AdminCommunityManagement rl=new AdminCommunityManagement();
+        CommunityAdminHomePage rl=new CommunityAdminHomePage();
         rl.setVisible(true);
         this.dispose();
         

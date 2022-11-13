@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class HospitalDirectoryDao {
     public static void save(Hospital hospital){
-        String query = "insert into hospital(name,community,city) values('"+hospital.getName()+"','"+hospital.getCommunity()+"','"+hospital.getCity()+")";
+        String query = "insert into hospital(name,community,city) values('"+hospital.getName()+"','"+hospital.getCommunity()+"','"+hospital.getCity()+"')";
         DbOperations.setDataOrDelete(query, "Hospital Added Successfully!");
     }
     
@@ -26,10 +26,10 @@ public class HospitalDirectoryDao {
             ResultSet rs = DbOperations.getData("select *from hospital");
             while(rs.next()){
                 Hospital hospital = new Hospital();
-                hospital.setId("id");
-                hospital.setName("name");
-                hospital.setCommunity("community");
-                hospital.setCity("city");
+                hospital.setId(rs.getString("id"));
+                hospital.setName(rs.getString("name"));
+                hospital.setCommunity(rs.getString("community"));
+                hospital.setCity(rs.getString("city"));
                 arrayList.add(hospital);
                 
             }
@@ -40,8 +40,8 @@ public class HospitalDirectoryDao {
      
     }
     
-    public static void delete(String name){
-        String query ="delete from hospital where name='"+name+"'";
+    public static void delete(String id){
+        String query ="delete from hospital where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "Hospital Deleted Successfully!");
     }
 }

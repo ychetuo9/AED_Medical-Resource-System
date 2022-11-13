@@ -4,10 +4,11 @@
  */
 package medicalresourcesystem;
 
+import dao.DoctorDirectoryDao;
 import dao.UserDao;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import model.User;
+import model.Doctor;
 
 /**
  *
@@ -161,17 +162,17 @@ public class DoctorLogin extends javax.swing.JFrame {
         //**************************************************************
         String email = txtEmail.getText();
         String password = txtPassword.getText();
-        User user = null;
-        user = UserDao.login(email,password);
-        if(user == null){
+        Doctor doctor = null;
+        doctor = DoctorDirectoryDao.login(email,password);
+        if(doctor == null){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
-            if(user.getStatus().equals("false")){
+            if(doctor.getStatus().equals("false")){
                 ImageIcon icon = new ImageIcon("src/popupicon/wait.png");
                 JOptionPane.showMessageDialog(null,"<html><b>Wait for Admin Approval</b></html>","Message",JOptionPane.INFORMATION_MESSAGE,icon);
                 clear();
             }
-            if(user.getStatus().equals("true")){
+            if(doctor.getStatus().equals("true")){
                 setVisible(false);
                 new DoctorHomePage(email).setVisible(true);
             }
