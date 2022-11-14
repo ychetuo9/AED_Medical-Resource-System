@@ -101,11 +101,11 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("Doctor SignUp");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(525, 210, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel3.setText("Name");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 289, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
 
         txtName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -113,11 +113,11 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 txtNameKeyReleased(evt);
             }
         });
-        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 287, 373, -1));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 373, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel4.setText("Email");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(407, 339, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
 
         txtEmail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -125,11 +125,11 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 txtEmailKeyReleased(evt);
             }
         });
-        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 337, 373, -1));
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, 373, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel5.setText("Mobile Number");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 464, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
 
         txtMobileNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -137,7 +137,7 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 txtMobileNumberKeyReleased(evt);
             }
         });
-        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 462, 373, -1));
+        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, 373, -1));
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -145,11 +145,11 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 txtPasswordKeyReleased(evt);
             }
         });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 626, 373, -1));
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 373, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel7.setText("Password");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(376, 628, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 530, -1, -1));
 
         btnSave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
@@ -159,7 +159,7 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 682, 90, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 580, 90, -1));
 
         btnClear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
@@ -169,7 +169,7 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 682, 90, -1));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 580, 90, -1));
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/login.png"))); // NOI18N
@@ -179,41 +179,41 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 682, -1, -1));
+        getContentPane().add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 580, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel6.setText("Gender");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 380, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         btnGroupGender.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnMale.setText("Male");
-        getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 378, -1, -1));
+        getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, -1, -1));
 
         btnGroupGender.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnFemale.setText("Female");
-        getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 378, -1, -1));
+        getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, -1, -1));
 
         cbbAge.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
-        getContentPane().add(cbbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 419, -1, -1));
+        getContentPane().add(cbbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel8.setText("Age");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 422, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel9.setText("Hospital");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel10.setText("PostionTitle");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 545, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel11.setText("Specialty");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 587, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
 
         txtSpecialty.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSpecialty.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -221,11 +221,11 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
                 txtSpecialtyKeyReleased(evt);
             }
         });
-        getContentPane().add(txtSpecialty, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 585, 373, -1));
+        getContentPane().add(txtSpecialty, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, 373, -1));
 
-        getContentPane().add(cbbHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 503, 373, -1));
+        getContentPane().add(cbbHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 373, -1));
 
-        getContentPane().add(cbbPositionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 544, 373, -1));
+        getContentPane().add(cbbPositionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 373, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

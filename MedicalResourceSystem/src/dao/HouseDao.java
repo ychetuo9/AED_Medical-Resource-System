@@ -35,7 +35,6 @@ public class HouseDao {
             JOptionPane.showMessageDialog(null, e);
         }
         return arrayList;
-     
     }
     
     public static void delete(String id){
@@ -47,4 +46,6 @@ public class HouseDao {
         String query = "update house set name='"+house.getName()+"',community='"+house.getCommunity()+"' where id='"+house.getId()+"'";
         DbOperations.setDataOrDelete(query, "House Updated Successfully!");
     }
+   
+    
 }

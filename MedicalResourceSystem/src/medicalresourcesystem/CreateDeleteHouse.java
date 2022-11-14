@@ -4,7 +4,6 @@
  */
 package medicalresourcesystem;
 
-import dao.CityDao;
 import dao.CommunityDao;
 import dao.HouseDao;
 import java.util.ArrayList;
@@ -51,6 +50,8 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cbbCommunity = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -102,7 +103,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 458, -1, -1));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, -1, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         btnSave.setText("Save");
@@ -111,7 +112,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 458, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("View House");
@@ -132,6 +133,14 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
 
         cbbCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbbCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 372, 246, -1));
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel7.setText("City");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel8.setText("--");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,6 +240,8 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtName;

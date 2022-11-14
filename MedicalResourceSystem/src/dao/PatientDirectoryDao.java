@@ -44,7 +44,7 @@ public class PatientDirectoryDao {
     public static ArrayList<Patient> getAllRecords(){
         ArrayList<Patient> arrayList = new ArrayList<>();
         try{
-            ResultSet rs1 = DbOperations.getData("select *from doctor");
+            ResultSet rs1 = DbOperations.getData("select *from patient");
             while(rs1.next()){
                 Patient patient = new Patient();
                 patient.setId(rs1.getString("id"));
@@ -65,6 +65,32 @@ public class PatientDirectoryDao {
         }
         return arrayList;
     }
+    
+    public static ArrayList<Patient> getOneRecord(String id){
+        ArrayList<Patient> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs1 = DbOperations.getData("select *from patient where id='"+id+"'");
+            while(rs1.next()){
+                Patient patient = new Patient();
+                patient.setId(rs1.getString("id"));
+                patient.setName(rs1.getString("name"));
+                patient.setEmail(rs1.getString("email"));
+                patient.setGender(rs1.getString("gender"));
+                patient.setAge(rs1.getString("age"));
+                patient.setMobileNumber(rs1.getString("mobileNumber"));
+                patient.setHouse(rs1.getString("house"));
+                patient.setCommunity(rs1.getString("community"));
+                patient.setAddress(rs1.getString("address"));
+
+                arrayList.add(patient);
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
     
     public static void update(Patient patient){
         String query = "update patient set name='"+patient.getName()+"',email='"+patient.getEmail()+"',gender='"+patient.getGender()+"',age='"+patient.getAge()+"',mobileNumber='"+patient.getMobileNumber()+"',house='"+patient.getHouse()+"',community"+patient.getCommunity()+"',address='"+patient.getAddress()+"' where id='"+patient.getId()+"'";

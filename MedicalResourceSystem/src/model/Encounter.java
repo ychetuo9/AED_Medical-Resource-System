@@ -10,9 +10,11 @@ package model;
  */
 public class Encounter {
     private String encounterDate;
+
     private Doctor doctor;
     private Patient patient;
     VitalSigns vitalSign;
+
 
     public String getEncounterDate() {
         return encounterDate;
@@ -45,5 +47,43 @@ public class Encounter {
     public void setVitalSign(VitalSigns vitalSign) {
         this.vitalSign = vitalSign;
     }
+    
+    String doctorId;
+    String patientId;
+    String patientHeartBeat;
+    String patientBloodPressure;
+
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getPatientHeartBeat() {
+        return patientHeartBeat;
+    }
+
+    public void setPatientHeartBeat(String patientHeartBeat) {
+        this.patientHeartBeat = patientHeartBeat;
+    }
+
+    public String getPatientBloodPressure() {
+        return patientBloodPressure;
+    }
+
+    public void setPatientBloodPressure(String patientBloodPressure) {
+        this.patientBloodPressure = patientBloodPressure;
+    }
+    
     
 }

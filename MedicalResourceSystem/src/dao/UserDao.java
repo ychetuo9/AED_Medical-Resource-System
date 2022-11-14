@@ -7,6 +7,7 @@ package dao;
 import javax.swing.JOptionPane;
 import model.User;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,6 +31,31 @@ public class UserDao {
             JOptionPane.showMessageDialog(null,e);
         }
         return user;
+    }
+    
+    public static ArrayList<User> getAllRecords(String email){
+        ArrayList<User> arrayList = new ArrayList<>();
+        try{
+            ResultSet rs1 = DbOperations.getData("select *from user where email like '%"+email+"%'");
+            while(rs1.next()){
+                User user = new User();
+                user.setId(rs1.getInt("id"));
+                user.setName(rs1.getString("name"));
+                user.setEmail(rs1.getString("email"));
+                user.setMobileNumber(rs1.getString("mobileNumber"));
+                user.setStatus(rs1.getString("status"));
+                arrayList.add(user);
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return arrayList;
+    }
+    
+    public static void changeStatus(String email,String status){
+        String query = "update user set status='"+status+"' where email='"+email+"'";
+        DbOperations.setDataOrDelete(query, "Status Changed Successfully!");
     }
     
 }

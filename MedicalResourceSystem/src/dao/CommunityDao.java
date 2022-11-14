@@ -49,4 +49,6 @@ public class CommunityDao {
         String query = "update community set name='"+community.getName()+"',zipcode='"+community.getZipcode()+"',city='"+community.getCity()+"' where id='"+community.getId()+"'";
         DbOperations.setDataOrDelete(query, "Community Updated Successfully!");
     }
+    
+    
 }

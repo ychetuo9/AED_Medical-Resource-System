@@ -4,6 +4,8 @@
  */
 package medicalresourcesystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yanyanchen
@@ -36,11 +38,12 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
         btnCreateHouse = new javax.swing.JButton();
         btnViewCommunity = new javax.swing.JButton();
         btnViewHouse = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCreateCity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreateCity.setText("Create City");
@@ -49,6 +52,7 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
                 btnCreateCityActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreateCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 316, 55));
 
         btnCreateCommunity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreateCommunity.setText("Create Community");
@@ -57,6 +61,7 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
                 btnCreateCommunityActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreateCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 316, 55));
 
         btnCreateHouse.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreateHouse.setText("Create House");
@@ -65,6 +70,7 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
                 btnCreateHouseActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreateHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 293, 316, 56));
 
         btnViewCommunity.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewCommunity.setText("View Update & Delete Community");
@@ -73,6 +79,7 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
                 btnViewCommunityActionPerformed(evt);
             }
         });
+        getContentPane().add(btnViewCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 160, -1, 56));
 
         btnViewHouse.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewHouse.setText("View Upadate & Delete House");
@@ -81,55 +88,17 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
                 btnViewHouseActionPerformed(evt);
             }
         });
+        getContentPane().add(btnViewHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 290, 316, 55));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        btnLogOut.setText("Log out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnLogOutActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(23, 23, 23))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCreateHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreateCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
-                        .addGap(276, 276, 276)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnViewCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnViewHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(193, 193, 193))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCreateCity, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jButton3)
-                .addGap(139, 139, 139)
-                .addComponent(btnCreateCity, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCreateHouse, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                    .addComponent(btnViewCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(71, 71, 71)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCreateCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(btnViewHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(253, Short.MAX_VALUE))
-        );
+        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 320, 55));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,13 +124,6 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
         in.setVisible(true);
     }//GEN-LAST:event_btnCreateHouseActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        SystemAdminHomePage in=new SystemAdminHomePage();
-        in.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void btnViewCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCommunityActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -175,6 +137,15 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
         ViewUpdateDeleteHouse in=new ViewUpdateDeleteHouse();
         in.setVisible(true);    
     }//GEN-LAST:event_btnViewHouseActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(null,"Do you really want to Logout","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            setVisible(false);
+            new Index().setVisible(true);
+        }
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,9 +186,9 @@ public class CommunityAdminHomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateCity;
     private javax.swing.JButton btnCreateCommunity;
     private javax.swing.JButton btnCreateHouse;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnViewCommunity;
     private javax.swing.JButton btnViewHouse;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

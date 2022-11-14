@@ -4,9 +4,16 @@
  */
 package medicalresourcesystem;
 
+import dao.CommunityDao;
+import dao.HouseDao;
 import dao.PatientDirectoryDao;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.Community;
+import model.House;
 import model.Patient;
 
 /**
@@ -44,6 +51,11 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
             btnUpdate.setEnabled(true);
         else
             btnUpdate.setEnabled(false);
+    }
+    
+    public void setComboBox(String i){
+        int x=Integer.parseInt(i);
+        cbbAge.setSelectedIndex(x+1);
     }
 
     /**
@@ -86,6 +98,11 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
         lblId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -251,15 +268,59 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here
+        
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
         String id = model.getValueAt(index,0).toString();
-        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this patient?","Select",JOptionPane.YES_NO_OPTION);
-        if(a==0){
-            PatientDirectoryDao.delete(id);
-            setVisible(false);
-            new CreateDeletePatient().setVisible(true);
+        lblId.setText(id);
+        String name = model.getValueAt(index,1).toString();
+        txtName.setText(name);
+        String email = model.getValueAt(index,2).toString();
+        txtEmail.setText(email);
+        String gender = model.getValueAt(index,3).toString();
+        if(gender.equals("Female")){
+            rbtnFemale.isSelected();
         }
+        if(gender.equals("Female")){
+            rbtnMale.isSelected();
+        }
+        String age = model.getValueAt(index,4).toString();
+        setComboBox(age);
+        String mobileNumbder = model.getValueAt(index,5).toString();
+        txtMobileNumber.setText(mobileNumbder);
+
+        String house = model.getValueAt(index,6).toString();
+        String community = model.getValueAt(index, 7).toString();
+        String address = model.getValueAt(index,8).toString();
+        txtAddress.setText(address);
+
+        btnUpdate.setEnabled(true);
+        btnDelete.setEnabled(true);
+        
+        cbbHouse.removeAllItems();
+        cbbHouse.addItem(house);
+        
+        ArrayList<House> houseList = HouseDao.getAllRecords();
+        Iterator<House> houseItr=houseList.iterator();
+        while(houseItr.hasNext()){
+            House houseObj = houseItr.next();
+            if(!houseObj.getName().equals(house))
+                cbbHouse.addItem(houseObj.getName());
+        }
+        
+        cbbCommunity.removeAllItems();
+        cbbCommunity.addItem(community);
+        
+        ArrayList<Community> communityList = CommunityDao.getAllRecords();
+        Iterator<Community> communityItr=communityList.iterator();
+        while(communityItr.hasNext()){
+            Community communityObj = communityItr.next();
+                if(!communityObj.getName().equals(community))
+                cbbCommunity.addItem(communityObj.getName());
+        }
+        
+        
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -283,10 +344,6 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
         // TODO add your handling code here:
         validateFields();
     }//GEN-LAST:event_txtMobileNumberKeyReleased
-
-    private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAddressKeyReleased
 
     private void btnClear1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClear1ActionPerformed
         // TODO add your handling code here:
@@ -331,6 +388,36 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
             new ViewUpdateDeletePatient().setVisible(true);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtAddressKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAddressKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddressKeyReleased
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Patient> patientList = PatientDirectoryDao.getAllRecords();
+        Iterator<Patient> itrPatient = patientList.iterator();
+        while(itrPatient.hasNext()){
+            Patient patientObj = itrPatient.next();
+            dtm.addRow(new Object[]{patientObj.getId(),patientObj.getName(),patientObj.getEmail(),patientObj.getAge(),patientObj.getMobileNumber(),patientObj.getHouse(),patientObj.getCommunity(),patientObj.getAddress()});
+        }
+        
+        ArrayList<Community> communityList = CommunityDao.getAllRecords();
+        Iterator<Community> itrCommunity = communityList.iterator();
+        while(itrCommunity.hasNext()){
+            Community communityObj = itrCommunity.next();
+            cbbCommunity.addItem(communityObj.getName());
+        }
+        
+        ArrayList<House> houseList = HouseDao.getAllRecords();
+        Iterator<House> itrHouse = houseList.iterator();
+        while(itrHouse.hasNext()){
+            House hosueObj = itrHouse.next();
+            cbbHouse.addItem(hosueObj.getName());
+        }
+        
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments

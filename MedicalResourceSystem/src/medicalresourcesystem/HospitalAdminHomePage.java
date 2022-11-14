@@ -4,6 +4,8 @@
  */
 package medicalresourcesystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yanyanchen
@@ -36,9 +38,10 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
         btnViewPatient = new javax.swing.JButton();
         btnViewHospital = new javax.swing.JButton();
         btnCreateDoctor = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnCreatePatient.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreatePatient.setText("Create Patient");
@@ -47,6 +50,7 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
                 btnCreatePatientActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreatePatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 286, 54));
 
         btnCreateHospital.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreateHospital.setText("Create Hospital");
@@ -55,6 +59,7 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
                 btnCreateHospitalActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreateHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 286, 55));
 
         btnViewDoctor.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewDoctor.setText("View Upadate & Delete Doctor");
@@ -63,6 +68,7 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
                 btnViewDoctorActionPerformed(evt);
             }
         });
+        getContentPane().add(btnViewDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 440, -1, 55));
 
         btnViewPatient.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewPatient.setText("View Update & Delete Patient");
@@ -71,6 +77,7 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
                 btnViewPatientActionPerformed(evt);
             }
         });
+        getContentPane().add(btnViewPatient, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 300, 286, 54));
 
         btnViewHospital.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnViewHospital.setText("View Update & Delete Hospital");
@@ -79,6 +86,7 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
                 btnViewHospitalActionPerformed(evt);
             }
         });
+        getContentPane().add(btnViewHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 120, -1, 55));
 
         btnCreateDoctor.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         btnCreateDoctor.setText("Create Doctor");
@@ -87,82 +95,28 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
                 btnCreateDoctorActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCreateDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 286, 55));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logout.png"))); // NOI18N
+        btnLogOut.setText("Log out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnLogOutActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnCreatePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCreateHospital, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                    .addComponent(btnCreateDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jButton3)
-                            .addGap(60, 60, 60))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnViewDoctor)
-                            .addGap(354, 354, 354)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnViewHospital)
-                            .addComponent(btnViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(351, 351, 351))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jButton3)
-                .addGap(143, 143, 143)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(148, 148, 148))
-        );
+        getContentPane().add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 580, 280, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
+    private void btnCreateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDoctorActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        CreateDeletePatient in=new CreateDeletePatient();
+        CreateDeleteDoctor in=new CreateDeleteDoctor();
         in.setVisible(true);
-    }//GEN-LAST:event_btnCreatePatientActionPerformed
 
-    private void btnCreateHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateHospitalActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        CreateDeleteHospital in=new CreateDeleteHospital();
-        in.setVisible(true);
-    }//GEN-LAST:event_btnCreateHospitalActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        SystemAdminHomePage in=new SystemAdminHomePage();
-        in.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnCreateDoctorActionPerformed
 
     private void btnViewHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHospitalActionPerformed
         // TODO add your handling code here:
@@ -178,20 +132,35 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
         in.setVisible(true);
     }//GEN-LAST:event_btnViewPatientActionPerformed
 
-    private void btnCreateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDoctorActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        CreateDeleteDoctor in=new CreateDeleteDoctor();
-        in.setVisible(true);
-        
-    }//GEN-LAST:event_btnCreateDoctorActionPerformed
-
     private void btnViewDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDoctorActionPerformed
         // TODO add your handling code here:
         this.dispose();
         ViewUpdateDeleteDoctor in=new ViewUpdateDeleteDoctor();
         in.setVisible(true);
     }//GEN-LAST:event_btnViewDoctorActionPerformed
+
+    private void btnCreateHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateHospitalActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CreateDeleteHospital in=new CreateDeleteHospital();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnCreateHospitalActionPerformed
+
+    private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CreateDeletePatient in=new CreateDeletePatient();
+        in.setVisible(true);
+    }//GEN-LAST:event_btnCreatePatientActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(null,"Do you really want to Logout","Select",JOptionPane.YES_NO_OPTION);
+        if(a==0){
+            setVisible(false);
+            new Index().setVisible(true);
+        }
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,9 +201,9 @@ public class HospitalAdminHomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnCreateDoctor;
     private javax.swing.JButton btnCreateHospital;
     private javax.swing.JButton btnCreatePatient;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnViewDoctor;
     private javax.swing.JButton btnViewHospital;
     private javax.swing.JButton btnViewPatient;
-    private javax.swing.JButton jButton3;
     // End of variables declaration//GEN-END:variables
 }

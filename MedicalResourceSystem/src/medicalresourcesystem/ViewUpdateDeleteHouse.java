@@ -281,7 +281,7 @@ public class ViewUpdateDeleteHouse extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        SystemAdminHomePage in=new SystemAdminHomePage();
+        CommunityAdminHomePage in=new CommunityAdminHomePage();
         in.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
