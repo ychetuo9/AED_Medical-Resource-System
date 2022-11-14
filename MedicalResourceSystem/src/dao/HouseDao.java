@@ -15,7 +15,7 @@ import model.House;
  */
 public class HouseDao {
     public static void save(House house){
-        String query = "insert into house(name,community) values('"+house.getName()+"')";
+        String query = "insert into house(name,community) values('"+house.getName()+"','"+house.getCommunity()+"')";
         DbOperations.setDataOrDelete(query, "House Added Successfully!");
     }
     

@@ -4,9 +4,17 @@
  */
 package medicalresourcesystem;
 
+import dao.CommunityDao;
+import dao.HouseDao;
 import dao.PatientDirectoryDao;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.Community;
+import model.Encounter;
+import model.House;
 import model.Patient;
 
 /**
@@ -20,13 +28,13 @@ public class PatientHomePage extends javax.swing.JFrame {
      */
     public PatientHomePage() {
         initComponents();
-        btnUpdate.setEnabled(false);
+        btnBook.setEnabled(false);
         btnDelete.setEnabled(false);
     }
     
     public PatientHomePage(String email) {
         initComponents();
-        btnUpdate.setEnabled(false);
+        btnBook.setEnabled(false);
         btnDelete.setEnabled(false);
     }
     
@@ -52,11 +60,11 @@ public class PatientHomePage extends javax.swing.JFrame {
         }
         
         if(!name.equals("")&&!age.equals("")&& !email.equals("")&& !mobileNumber.equals("")&& !address.equals("")&& !house.equals("")&& !community.equals("")&& !gender.equals("")){
-            btnUpdate.setEnabled(false);
+            btnBook.setEnabled(false);
             btnDelete.setEnabled(false);     
         }
         else{
-            btnUpdate.setEnabled(false);
+            btnBook.setEnabled(false);
             btnDelete.setEnabled(false);     
         }
     }
@@ -70,7 +78,6 @@ public class PatientHomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
@@ -90,12 +97,20 @@ public class PatientHomePage extends javax.swing.JFrame {
         cbbHouse = new javax.swing.JComboBox<>();
         cbbCommunity = new javax.swing.JComboBox<>();
         btnClear1 = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnBook = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        txtDoctor = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        dataChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -104,10 +119,6 @@ public class PatientHomePage extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jButton1.setText("Search Doctor");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1118, 39, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setText("Person Detail");
@@ -200,25 +211,16 @@ public class PatientHomePage extends javax.swing.JFrame {
                 btnClear1ActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, -1, -1));
+        getContentPane().add(btnClear1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 670, -1, -1));
 
-        btnUpdate.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnBook.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        btnBook.setText("Book Encounter");
+        btnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnBookActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, -1, -1));
-
-        btnDelete.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, -1, -1));
+        getContentPane().add(btnBook, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 670, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,7 +238,7 @@ public class PatientHomePage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 790, 80));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 790, 50));
 
         jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         jLabel7.setText("ID");
@@ -245,6 +247,43 @@ public class PatientHomePage extends javax.swing.JFrame {
         lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         lblId.setText("00");
         getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
+
+        jTable2.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Email", "Gender", "Age", "Mobile ", "Hospital", "Position Title", "Specialty"
+            }
+        ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 790, -1));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setText("View Doctor");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 90, -1, -1));
+        getContentPane().add(txtDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, 370, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 140, 190, -1));
+
+        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel13.setText("Search Doctor");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 140, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel14.setText("Doctor");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel15.setText("Date");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 600, -1, -1));
+        getContentPane().add(dataChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -274,18 +313,17 @@ public class PatientHomePage extends javax.swing.JFrame {
         new PatientHomePage().setVisible(true);
     }//GEN-LAST:event_btnClear1ActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
-        Patient patient = new Patient();
+        Encounter encounter = new Encounter();
         String id =lblId.getText();
-        patient.setId(id);
-        patient.setName(txtName.getText());
-        patient.setEmail(txtEmail.getText());
-        patient.setMobileNumber(txtMobileNumber.getText());
-        patient.setAddress(txtAddress.getText());
-        patient.setAge((String)cbbAge.getSelectedItem());
-        patient.setCommunity((String)cbbCommunity.getSelectedItem());
-        patient.setHouse((String)cbbHouse.getSelectedItem());
+        encounter.setPatientId(id);
+        encounter.setName(txtName.getText());
+        encounter.setMobileNumber(txtMobileNumber.getText());
+        encounter.setAddress(txtAddress.getText());
+        encounter.setAge((String)cbbAge.getSelectedItem());
+        encounter.setCommunity((String)cbbCommunity.getSelectedItem());
+        encounter.setHouse((String)cbbHouse.getSelectedItem());
         String gender="";
         if(rbtnFemale.isSelected()){
             gender="Female";
@@ -299,70 +337,32 @@ public class PatientHomePage extends javax.swing.JFrame {
         setVisible(false);
         new CreateDeletePatient().setVisible(true);
 
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        String id = lblId.getText();
-        int a = JOptionPane.showConfirmDialog(null, "Do you want to Delete the Patient?","Select",JOptionPane.YES_NO_OPTION);
-        if(a==0){
-            PatientDirectoryDao.delete(id);
-            setVisible(false);
-            new ViewUpdateDeletePatient().setVisible(true);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnBookActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,0).toString();
-        lblId.setText(id);
-        String name = model.getValueAt(index,1).toString();
-        txtName.setText(name);
-        String email = model.getValueAt(index,2).toString();
-        txtEmail.setText(email);
-        String gender = model.getValueAt(index,3).toString();
-        if(gender.equals("Female")){
-            rbtnFemale.isSelected();
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<Patient> patientList = PatientDirectoryDao.getAllRecords();
+        Iterator<Patient> itrPatient = patientList.iterator();
+        while(itrPatient.hasNext()){
+            Patient patientObj = itrPatient.next();
+            dtm.addRow(new Object[]{patientObj.getId(),patientObj.getName(),patientObj.getEmail(),patientObj.getAge(),patientObj.getMobileNumber(),patientObj.getHouse(),patientObj.getCommunity(),patientObj.getAddress()});
         }
-        if(gender.equals("Female")){
-            rbtnMale.isSelected();
-        }
-        String age = model.getValueAt(index,4).toString();
-        setComboBox(age);
-        String mobileNumbder = model.getValueAt(index,5).toString();
-        txtMobileNumber.setText(mobileNumbder);
-
-        String house = model.getValueAt(index,6).toString();
-        String community = model.getValueAt(index, 7).toString();
-        String address = model.getValueAt(index,8).toString();
-        txtAddress.setText(address);
-
-        btnUpdate.setEnabled(true);
-        btnDelete.setEnabled(true);
-        
-        cbbHouse.removeAllItems();
-        cbbHouse.addItem(house);
-        
-        ArrayList<House> houseList = HouseDao.getAllRecords();
-        Iterator<House> houseItr=houseList.iterator();
-        while(houseItr.hasNext()){
-            House houseObj = houseItr.next();
-            if(!houseObj.getName().equals(house))
-                cbbHouse.addItem(houseObj.getName());
-        }
-        
-        cbbCommunity.removeAllItems();
-        cbbCommunity.addItem(community);
         
         ArrayList<Community> communityList = CommunityDao.getAllRecords();
-        Iterator<Community> communityItr=communityList.iterator();
-        while(communityItr.hasNext()){
-            Community communityObj = communityItr.next();
-                if(!communityObj.getName().equals(community))
-                cbbCommunity.addItem(communityObj.getName());
+        Iterator<Community> itrCommunity = communityList.iterator();
+        while(itrCommunity.hasNext()){
+            Community communityObj = itrCommunity.next();
+            cbbCommunity.addItem(communityObj.getName());
         }
+        
+        ArrayList<House> houseList = HouseDao.getAllRecords();
+        Iterator<House> itrHouse = houseList.iterator();
+        while(itrHouse.hasNext()){
+            House hosueObj = itrHouse.next();
+            cbbHouse.addItem(hosueObj.getName());
+        }
+        
         
     }//GEN-LAST:event_formComponentShown
 
@@ -394,7 +394,7 @@ public class PatientHomePage extends javax.swing.JFrame {
         String address = model.getValueAt(index,8).toString();
         txtAddress.setText(address);
 
-        btnUpdate.setEnabled(true);
+        btnBook.setEnabled(true);
         btnDelete.setEnabled(true);
 
         cbbHouse.removeAllItems();
@@ -420,6 +420,64 @@ public class PatientHomePage extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here
+
+        int index = jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        String id = model.getValueAt(index,0).toString();
+        lblId.setText(id);
+        String name = model.getValueAt(index,1).toString();
+        txtName.setText(name);
+        String email = model.getValueAt(index,2).toString();
+        txtEmail.setText(email);
+        String gender = model.getValueAt(index,3).toString();
+        if(gender.equals("Female")){
+            rbtnFemale.isSelected();
+        }
+        if(gender.equals("Female")){
+            rbtnMale.isSelected();
+        }
+        String age = model.getValueAt(index,4).toString();
+        setComboBox(age);
+        String mobileNumbder = model.getValueAt(index,5).toString();
+        txtMobileNumber.setText(mobileNumbder);
+        String hospital = model.getValueAt(index,6).toString();
+
+        String positionTitle = model.getValueAt(index,7).toString();
+        switch (positionTitle){
+            //            , Medical Doctor, Doctor of Osteopathy, Nurse Practitioner, Physical Assistant
+            case " ":
+            cbbAge.setSelectedIndex(0);
+            break;
+            case "Medical Doctor":
+            cbbAge.setSelectedIndex(1);
+            break;
+            case "Doctor of Osteopathy":
+            cbbAge.setSelectedIndex(2);
+            break;
+            case "Nurse Practitioner":
+            cbbAge.setSelectedIndex(3);
+            break;
+            case "Physical Assistant":
+            cbbAge.setSelectedIndex(4);
+            break;
+        }
+        String specialty = model.getValueAt(index,8).toString();
+        txtSpecialty.setText(specialty);
+
+        btnBook.setEnabled(true);
+        btnDelete.setEnabled(true);
+
+        ArrayList<Hospital> hospitalList = HospitalDirectoryDao.getAllRecords();
+        Iterator<Hospital> hospitalItr=hospitalList.iterator();
+        while(hospitalItr.hasNext()){
+            Hospital hospitalObj = hospitalItr.next();
+            if(!hospitalObj.getName().equals(hospital))
+            cbbHospital.addItem(hospitalObj.getName());
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -457,16 +515,19 @@ public class PatientHomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBook;
     private javax.swing.JButton btnClear1;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbbAge;
     private javax.swing.JComboBox<String> cbbCommunity;
     private javax.swing.JComboBox<String> cbbHouse;
-    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser dataChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -475,11 +536,15 @@ public class PatientHomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblId;
     private javax.swing.JRadioButton rbtnFemale;
     private javax.swing.JRadioButton rbtnMale;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtDoctor;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;

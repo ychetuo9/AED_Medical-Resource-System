@@ -9,6 +9,7 @@ import dao.UserDao;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Patient;
+import model.User;
 
 /**
  *
@@ -154,7 +155,7 @@ public class PatientLogin extends javax.swing.JFrame {
         //**************************************************************
         String email = txtEmail.getText();
         String password = txtPassword.getText();
-        Patient patient = null;
+        User patient = null;
         patient = PatientDirectoryDao.login(email, password);
         if (patient == null) {
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>", "Message", JOptionPane.ERROR_MESSAGE);

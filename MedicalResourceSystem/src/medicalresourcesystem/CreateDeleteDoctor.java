@@ -73,8 +73,6 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtMobileNumber = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         rbtnMale = new javax.swing.JRadioButton();
         rbtnFemale = new javax.swing.JRadioButton();
@@ -86,6 +84,8 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         txtSpecialty = new javax.swing.JTextField();
         cbbHospital = new javax.swing.JComboBox<>();
         cbbPositionTitle = new javax.swing.JComboBox<>();
+        txtPassword2 = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -190,18 +190,6 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         });
         getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 280, -1));
 
-        txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 280, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel7.setText("Password");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel6.setText("Gender");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
@@ -246,6 +234,18 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
 
         cbbPositionTitle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Medical Doctor", "Doctor of Osteopathy", "Nurse Practitioner", "Physical Assistant" }));
         getContentPane().add(cbbPositionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 280, -1));
+
+        txtPassword2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPassword2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPassword2KeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 280, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel7.setText("Password");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 540, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -316,11 +316,6 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtMobileNumberKeyReleased
 
-    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_txtPasswordKeyReleased
-
     private void txtSpecialtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSpecialtyKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSpecialtyKeyReleased
@@ -343,6 +338,11 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_formComponentShown
+
+    private void txtPassword2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassword2KeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPassword2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -407,6 +407,8 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtPassword1;
+    private javax.swing.JPasswordField txtPassword2;
     private javax.swing.JTextField txtSpecialty;
     // End of variables declaration//GEN-END:variables
 }

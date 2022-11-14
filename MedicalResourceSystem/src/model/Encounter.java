@@ -11,7 +11,6 @@ package model;
 public class Encounter {
     private String encounterDate;
 
-    private Doctor doctor;
     private Patient patient;
     VitalSigns vitalSign;
 
@@ -24,13 +23,6 @@ public class Encounter {
         this.encounterDate = encounterDate;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
 
     public Patient getPatient() {
         return patient;
@@ -48,17 +40,80 @@ public class Encounter {
         this.vitalSign = vitalSign;
     }
     
-    String doctorId;
+    String doctor;
     String patientId;
+    String name;
+    String gender;
+    String age;
+    String mobileNumber;
+    String house;
+    String community;
     String patientHeartBeat;
     String patientBloodPressure;
+    String date;
 
-    public String getDoctorId() {
-        return doctorId;
+    public String getName() {
+        return name;
     }
 
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getHouse() {
+        return house;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public String getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(String community) {
+        this.community = community;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
     }
 
     public String getPatientId() {

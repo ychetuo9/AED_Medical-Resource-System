@@ -19,21 +19,21 @@ public class PatientDirectoryDao {
         String query = "insert into user(name,email,mobileNumber,password,status) values('"+patient.getName()+"','"+patient.getEmail()+"','"+patient.getMobileNumber()+"','"+patient.getPassword()+"','false')";
         DbOperations.setDataOrDelete(query, "Registered Successfully! Wait for Admin Approval!");
         String queryToPatient = "insert into patient(name,email,mobileNumber,password,status,address,house,community,age,gender) values('"+patient.getName()+"','"+patient.getEmail()+"','"+patient.getMobileNumber()+"','"+patient.getPassword()+"','false','"+patient.getAddress()+"','"+patient.getHouse()+"',"+patient.getCommunity()+"','"+patient.getAge()+"','"+patient.getGender()+"')";
-        DbOperations.setDataOrDelete(query, "New Patient Account Added!");
+        DbOperations.setDataOrDelete(queryToPatient, "New Patient Account Added!");
     }
     
-    public static Patient login(String email,String password){
-        Patient patient = null;
+    public static User login(String email,String password){
+        User user = null;
         try{
-            ResultSet rs = DbOperations.getData("select *from patient where email='"+email+"' and password='"+password+"'");
+            ResultSet rs = DbOperations.getData("select *from user where email='"+email+"' and password='"+password+"'");
             while(rs.next()){
-                patient = new Patient();
-                patient.setStatus(rs.getString("status"));
+                user= new User();
+                user.setStatus(rs.getString("status"));
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
-        return patient;
+        return user;
     }
     
     public static void delete(String id){

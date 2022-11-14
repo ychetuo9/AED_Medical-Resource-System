@@ -9,6 +9,7 @@ import dao.HouseDao;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Community;
 import model.House;
@@ -26,6 +27,14 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
         initComponents();
         btnSave.setEnabled(false);
 
+    }
+    
+    public void validateFields(){
+        String name=txtName.getText();
+        if(!name.equals(""))
+            btnSave.setEnabled(true);
+        else
+            btnSave.setEnabled(false);
     }
 
     /**
@@ -50,8 +59,6 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cbbCommunity = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -60,6 +67,12 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
         getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 285, 246, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -103,7 +116,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, -1, -1));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 480, -1, -1));
 
         btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         btnSave.setText("Save");
@@ -112,7 +125,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("View House");
@@ -131,16 +144,8 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
         jLabel1.setText("Create & Delete House");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 48, -1, -1));
 
-        cbbCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Item 2", "Item 3", "Item 4" }));
+        cbbCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         getContentPane().add(cbbCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 372, 246, -1));
-
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel7.setText("City");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel8.setText("--");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 450, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,7 +162,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
         if(a==0){
             HouseDao.delete(id);
             setVisible(false);
-            new CreateDeleteHospital().setVisible(true);
+            new CreateDeleteHouse().setVisible(true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -174,7 +179,7 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
         house.setCommunity((String)cbbCommunity.getSelectedItem());
         HouseDao.save(house);
         setVisible(false);
-        new CreateDeleteHospital().setVisible(true);
+        new CreateDeleteHouse().setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -186,6 +191,14 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        ArrayList<House> houseList = HouseDao.getAllRecords();
+        Iterator<House> itrHouse = houseList.iterator();
+        while(itrHouse.hasNext()){
+            House houseObj = itrHouse.next();
+            dtm.addRow(new Object[]{houseObj.getId(),houseObj.getName(),houseObj.getCommunity()});
+        }
+        
         ArrayList<Community> list = CommunityDao.getAllRecords();
         Iterator<Community> itr = list.iterator();
         while(itr.hasNext()){
@@ -193,6 +206,11 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
             cbbCommunity.addItem(communityObj.getName());
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtNameKeyReleased
 
     /**
      * @param args the command line arguments
@@ -240,8 +258,6 @@ public class CreateDeleteHouse extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtName;

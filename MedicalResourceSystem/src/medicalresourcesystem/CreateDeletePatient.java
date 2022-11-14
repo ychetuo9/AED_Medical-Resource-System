@@ -90,6 +90,8 @@ public class CreateDeletePatient extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextField();
         cbbHouse = new javax.swing.JComboBox<>();
         cbbCommunity = new javax.swing.JComboBox<>();
+        txtPassword = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -131,7 +133,7 @@ public class CreateDeletePatient extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 560, -1, -1));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 580, -1, -1));
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +141,7 @@ public class CreateDeletePatient extends javax.swing.JFrame {
                 btnSaveActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, -1, -1));
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel2.setText("View Patient");
@@ -234,9 +236,23 @@ public class CreateDeletePatient extends javax.swing.JFrame {
         });
         getContentPane().add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 280, -1));
 
+        cbbHouse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         getContentPane().add(cbbHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 280, -1));
 
+        cbbCommunity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         getContentPane().add(cbbCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 280, -1));
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 280, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel7.setText("Password");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 530, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -342,6 +358,11 @@ public class CreateDeletePatient extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formComponentShown
 
+    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtPasswordKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -394,6 +415,7 @@ public class CreateDeletePatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -404,5 +426,6 @@ public class CreateDeletePatient extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

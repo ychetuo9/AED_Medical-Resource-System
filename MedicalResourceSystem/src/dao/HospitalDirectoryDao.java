@@ -44,4 +44,8 @@ public class HospitalDirectoryDao {
         String query ="delete from hospital where id='"+id+"'";
         DbOperations.setDataOrDelete(query, "Hospital Deleted Successfully!");
     }
+    public static void update(Hospital hospital){
+        String query = "update hospital set name='"+hospital.getName()+"',community='"+hospital.getCommunity()+"',city='"+hospital.getCity()+"' where id='"+hospital.getId()+"'";
+        DbOperations.setDataOrDelete(query, "House Updated Successfully!");
+    }
 }

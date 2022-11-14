@@ -248,6 +248,17 @@ public class ViewUpdateDeleteHospital extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        Hospital hospital = new Hospital();
+        String id =lblId.getText();
+        hospital.setId(id);
+        hospital.setName(txtName.getText());
+        hospital.setCommunity((String)cbbCommunity.getSelectedItem());
+        hospital.setCity((String)cbbCity.getSelectedItem());
+      
+        HospitalDirectoryDao.update(hospital);
+        setVisible(false);
+        new ViewUpdateDeleteHospital().setVisible(true);
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
