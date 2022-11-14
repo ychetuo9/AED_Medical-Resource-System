@@ -60,6 +60,7 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -73,8 +74,6 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtMobileNumber = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         rbtnMale = new javax.swing.JRadioButton();
         rbtnFemale = new javax.swing.JRadioButton();
@@ -101,11 +100,11 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Add new Doctor");
+        jLabel4.setText("Doctor Details");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel3.setText("*Click on row to Delete Doctor");
+        jLabel3.setText("*Click on row to View Doctor");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 640, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
@@ -179,26 +178,16 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         });
         getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 280, -1));
 
-        txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 280, -1));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel7.setText("Password");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel6.setText("Gender");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
+        buttonGroup1.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnMale.setText("Male");
         getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
+        buttonGroup1.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnFemale.setText("Female");
         getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
@@ -287,10 +276,10 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         txtEmail.setText(email);
         String gender = model.getValueAt(index,3).toString();
         if(gender.equals("Female")){
-            rbtnFemale.isSelected();
+            rbtnFemale.setSelected(true);
         }
-        if(gender.equals("Female")){
-            rbtnMale.isSelected();
+        if(gender.equals("Male")){
+            rbtnMale.setSelected(true);
         }
         String age = model.getValueAt(index,4).toString();
         setComboBox(age);
@@ -302,19 +291,19 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         switch (positionTitle){
 //            , Medical Doctor, Doctor of Osteopathy, Nurse Practitioner, Physical Assistant
             case " ":
-                cbbAge.setSelectedIndex(0);
+                cbbPositionTitle.setSelectedIndex(0);
                 break;
             case "Medical Doctor":
-                cbbAge.setSelectedIndex(1);
+                cbbPositionTitle.setSelectedIndex(1);
                 break;
             case "Doctor of Osteopathy":
-                cbbAge.setSelectedIndex(2);
+                cbbPositionTitle.setSelectedIndex(2);
                 break;
             case "Nurse Practitioner":
-                cbbAge.setSelectedIndex(3);
+                cbbPositionTitle.setSelectedIndex(3);
                 break;
             case "Physical Assistant":
-                cbbAge.setSelectedIndex(4);
+                cbbPositionTitle.setSelectedIndex(4);
                 break;
         }
         String specialty = model.getValueAt(index,8).toString();
@@ -354,11 +343,6 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         validateFields();
     }//GEN-LAST:event_txtMobileNumberKeyReleased
 
-    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_txtPasswordKeyReleased
-
     private void txtSpecialtyKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSpecialtyKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSpecialtyKeyReleased
@@ -380,7 +364,7 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         doctor.setSpecialty(txtSpecialty.getText());
         doctor.setAge((String)cbbAge.getSelectedItem());
         doctor.setHospital((String)cbbHospital.getSelectedItem());
-        doctor.setPositionTitle((String)cbbAge.getSelectedItem());
+        doctor.setPositionTitle((String)cbbPositionTitle.getSelectedItem());
         String gender="";
         if(rbtnFemale.isSelected()){
             gender="Female";
@@ -413,7 +397,7 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
         Iterator<Doctor> itrDoctor = doctorList.iterator();
         while(itrDoctor.hasNext()){
             Doctor doctorObj = itrDoctor.next();
-            dtm.addRow(new Object[]{doctorObj.getId(),doctorObj.getName(),doctorObj.getEmail(),doctorObj.getAge(),doctorObj.getMobileNumber(),doctorObj.getHospital(),doctorObj.getPositionTitle(),doctorObj.getSpecialty()});
+            dtm.addRow(new Object[]{doctorObj.getId(),doctorObj.getName(),doctorObj.getEmail(),doctorObj.getGender(),doctorObj.getAge(),doctorObj.getMobileNumber(),doctorObj.getHospital(),doctorObj.getPositionTitle(),doctorObj.getSpecialty()});
         }
         
         ArrayList<Hospital> hospitalList = HospitalDirectoryDao.getAllRecords();
@@ -422,7 +406,6 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
             Hospital hospitalObj = itrHospital.next();
             cbbHospital.addItem(hospitalObj.getName());
         }
-        
     }//GEN-LAST:event_formComponentShown
 
     
@@ -469,6 +452,7 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
     private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbAge;
     private javax.swing.JComboBox<String> cbbHospital;
     private javax.swing.JComboBox<String> cbbPositionTitle;
@@ -484,7 +468,6 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -495,7 +478,6 @@ public class ViewUpdateDeleteDoctor extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
-    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtSpecialty;
     // End of variables declaration//GEN-END:variables
 }

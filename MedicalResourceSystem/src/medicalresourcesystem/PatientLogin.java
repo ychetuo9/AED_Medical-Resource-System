@@ -156,7 +156,7 @@ public class PatientLogin extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         User patient = null;
-        patient = PatientDirectoryDao.login(email, password);
+        patient = UserDao.login(email, password);
         if (patient == null) {
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>", "Message", JOptionPane.ERROR_MESSAGE);
         } else {

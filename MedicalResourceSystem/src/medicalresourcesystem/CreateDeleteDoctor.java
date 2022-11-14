@@ -58,6 +58,7 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -194,16 +195,18 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         jLabel6.setText("Gender");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
+        buttonGroup1.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnMale.setText("Male");
         getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
+        buttonGroup1.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnFemale.setText("Female");
         getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         cbbAge.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+        cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
         getContentPane().add(cbbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -256,7 +259,7 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
         String id = model.getValueAt(index,0).toString();
-        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this community?","Select",JOptionPane.YES_NO_OPTION);
+        int a = JOptionPane.showConfirmDialog(null,"Do you want to delete this doctor?","Select",JOptionPane.YES_NO_OPTION);
         if(a==0){
             DoctorDirectoryDao.delete(id);
             setVisible(false);
@@ -279,7 +282,7 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
         doctor.setSpecialty(txtSpecialty.getText());
         doctor.setAge((String)cbbAge.getSelectedItem());
         doctor.setHospital((String)cbbHospital.getSelectedItem());
-        doctor.setPositionTitle((String)cbbAge.getSelectedItem());
+        doctor.setPositionTitle((String)cbbPositionTitle.getSelectedItem());
         String gender="";
         if(rbtnFemale.isSelected()){
             gender="Female";
@@ -382,6 +385,7 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSave;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbAge;
     private javax.swing.JComboBox<String> cbbHospital;
     private javax.swing.JComboBox<String> cbbPositionTitle;
@@ -406,8 +410,6 @@ public class CreateDeleteDoctor extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMobileNumber;
     private javax.swing.JTextField txtName;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JPasswordField txtPassword2;
     private javax.swing.JTextField txtSpecialty;
     // End of variables declaration//GEN-END:variables

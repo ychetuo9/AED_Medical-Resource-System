@@ -209,7 +209,7 @@ public class CreateDeleteCity extends javax.swing.JFrame {
         if(a==0){
             CityDao.delete(id);
             setVisible(false);
-            new CommunityAdminHomePage().setVisible(true);
+            new CreateDeleteCity().setVisible(true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -232,7 +232,7 @@ public class CreateDeleteCity extends javax.swing.JFrame {
         city.setName(txtName.getText());
         CityDao.save(city);
         setVisible(false);
-        new CommunityAdminHomePage().setVisible(true);
+        new CreateDeleteCity().setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased

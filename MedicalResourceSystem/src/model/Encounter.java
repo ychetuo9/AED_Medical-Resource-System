@@ -40,17 +40,93 @@ public class Encounter {
         this.vitalSign = vitalSign;
     }
     
+
+    String specialty;
+    String positionTitle;
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public String getPositionTitle() {
+        return positionTitle;
+    }
+
+    public void setPositionTitle(String positionTitle) {
+        this.positionTitle = positionTitle;
+    }
+    
     String doctor;
     String patientId;
     String name;
     String gender;
     String age;
-    String mobileNumber;
+    String email;
     String house;
     String community;
     String patientHeartBeat;
     String patientBloodPressure;
     String date;
+    String id;
+    String heartBeat;
+    String bloodPressure;
+    String diagnose;
+    String status;
+
+    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getHeartBeat() {
+        return heartBeat;
+    }
+
+    public void setHeartBeat(String heartBeat) {
+        this.heartBeat = heartBeat;
+    }
+
+    public String getBloodPressure() {
+        return bloodPressure;
+    }
+
+    public void setBloodPressure(String bloodPressure) {
+        this.bloodPressure = bloodPressure;
+    }
+
+    public String getDiagnose() {
+        return diagnose;
+    }
+
+    public void setDiagnose(String diagnose) {
+        this.diagnose = diagnose;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -76,14 +152,7 @@ public class Encounter {
         this.age = age;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
+    
     public String getHouse() {
         return house;
     }

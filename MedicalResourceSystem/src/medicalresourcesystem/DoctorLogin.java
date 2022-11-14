@@ -9,6 +9,7 @@ import dao.UserDao;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Doctor;
+import model.User;
 
 /**
  *
@@ -162,8 +163,8 @@ public class DoctorLogin extends javax.swing.JFrame {
         //**************************************************************
         String email = txtEmail.getText();
         String password = txtPassword.getText();
-        Doctor doctor = null;
-        doctor = DoctorDirectoryDao.login(email,password);
+        User doctor = null;
+        doctor = UserDao.login(email,password);
         if(doctor == null){
             JOptionPane.showMessageDialog(null, "<html><b style=\"color:red\">Incorrect Username or Password</b></html>","Message",JOptionPane.ERROR_MESSAGE);
         }else{
@@ -174,7 +175,7 @@ public class DoctorLogin extends javax.swing.JFrame {
             }
             if(doctor.getStatus().equals("true")){
                 setVisible(false);
-                new DoctorHomePage(email).setVisible(true);
+                new DoctorCreateEncounter(email).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed

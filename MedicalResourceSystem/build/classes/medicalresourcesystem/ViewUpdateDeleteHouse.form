@@ -158,7 +158,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="15" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="*Click on row to delete House"/>
+        <Property name="text" type="java.lang.String" value="*Click on row to View House"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

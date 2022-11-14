@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Doctor;
+import model.User;
 
 /**
  *
@@ -18,6 +19,8 @@ public class DoctorDirectoryDao {
     public static void save(Doctor doctor){
         String query = "insert into user(name,email,mobileNumber,password,status) values('"+doctor.getName()+"','"+doctor.getEmail()+"','"+doctor.getMobileNumber()+"','"+doctor.getPassword()+"','false')";
         DbOperations.setDataOrDelete(query, "Registered Successfully! Wait for Admin Approval!");
+        String queryToDoctor = "insert into doctor(name,email,mobileNumber,password,status,hospital,position,specialty,age,gender) values('"+doctor.getName()+"','"+doctor.getEmail()+"','"+doctor.getMobileNumber()+"','"+doctor.getPassword()+"','false','"+doctor.getHospital()+"','"+doctor.getPositionTitle()+"','"+doctor.getSpecialty()+"','"+doctor.getAge()+"','"+doctor.getGender()+"')";
+        DbOperations.setDataOrDelete(queryToDoctor, "New Doctor Account Added!");
     }
     
     public static Doctor login(String email,String password){
@@ -52,7 +55,7 @@ public class DoctorDirectoryDao {
                 doctor.setAge(rs1.getString("age"));
                 doctor.setMobileNumber(rs1.getString("mobileNumber"));
                 doctor.setHospital(rs1.getString("hospital"));
-                doctor.setPositionTitle(rs1.getString("positionTitle"));
+                doctor.setPositionTitle(rs1.getString("position"));
                 doctor.setSpecialty(rs1.getString("specialty"));
 
                 arrayList.add(doctor);
@@ -66,7 +69,7 @@ public class DoctorDirectoryDao {
     }
     
     public static void update(Doctor doctor){
-        String query = "update doctor set name='"+doctor.getName()+"',email='"+doctor.getEmail()+"',gender='"+doctor.getGender()+"',age='"+doctor.getAge()+"',mobileNumber='"+doctor.getMobileNumber()+"',hospital='"+doctor.getHospital()+"',positionTitle"+doctor.getPositionTitle()+"',specialty='"+doctor.getSpecialty()+"' where id='"+doctor.getId()+"'";
+        String query = "update doctor set name='"+doctor.getName()+"',email='"+doctor.getEmail()+"',gender='"+doctor.getGender()+"',age='"+doctor.getAge()+"',mobileNumber='"+doctor.getMobileNumber()+"',hospital='"+doctor.getHospital()+"',position='"+doctor.getPositionTitle()+"',specialty='"+doctor.getSpecialty()+"' where id='"+doctor.getId()+"'";
         DbOperations.setDataOrDelete(query, "House Updated Successfully!");
     }
     

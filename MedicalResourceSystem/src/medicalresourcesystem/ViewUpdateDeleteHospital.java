@@ -95,7 +95,7 @@ public class ViewUpdateDeleteHospital extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel3.setText("*Click on row to delete Hospital");
+        jLabel3.setText("*Click on row to View Hospital");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 636, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N

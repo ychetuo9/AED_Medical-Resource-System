@@ -223,6 +223,7 @@ public class ViewUpdateDeleteCommunity extends javax.swing.JFrame {
         community.setName(txtName.getText());
         community.setZipcode(txtZipCode.getText());
         community.setCity((String)cbbCity.getSelectedItem());
+        
         CommunityDao.update(community);
         setVisible(false);
         new ViewUpdateDeleteCommunity().setVisible(true);

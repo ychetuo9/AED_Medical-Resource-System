@@ -5,13 +5,17 @@
 package medicalresourcesystem;
 
 import dao.CommunityDao;
+import dao.EncounterDao;
 import dao.HouseDao;
 import dao.PatientDirectoryDao;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Community;
+import model.Encounter;
 import model.House;
 
 /**
@@ -28,33 +32,23 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         btnSave.setEnabled(false);
     }
     
+    public DoctorCreateEncounter(String email) {
+        initComponents();
+        btnSave.setEnabled(false);
+    }
+    
     public void validateFields(){
-        String name=txtName.getText();
-        String mobileNumber=txtMobileNumber.getText();
         String diagnose=txtDiagnose.getText();
         String heartBeat=txtHeartBeat.getText();
         String bloodPressure=txtBloodPressure.getText();
-        String house=(String)cbbHouse.getSelectedItem();
-        String community=(String)cbbCommunity.getSelectedItem();
-        String age=(String)cbbAge.getSelectedItem();
-        String gender="";
-        if(rbtnFemale.isSelected()){
-            gender="Female";
-        }
-        if(rbtnMale.isSelected()){
-            gender="Male";
-        }
         
-        if(!name.equals("")&&!age.equals("")&& !bloodPressure.equals("")&&!heartBeat.equals("")&& !mobileNumber.equals("")&& !diagnose.equals("")&& !house.equals("")&& !community.equals("")&& !gender.equals(""))
+        if(!bloodPressure.equals("")&&!heartBeat.equals("")&& !diagnose.equals(""))
             btnSave.setEnabled(true);
         else
             btnSave.setEnabled(false);
     }
     
-    public void setComboBox(String i){
-        int x=Integer.parseInt(i);
-        cbbAge.setSelectedIndex(x+1);
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,27 +61,8 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtMobileNumber = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        rbtnMale = new javax.swing.JRadioButton();
-        rbtnFemale = new javax.swing.JRadioButton();
-        cbbAge = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        cbbHouse = new javax.swing.JComboBox<>();
-        cbbCommunity = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        lblId = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtHeartBeat = new javax.swing.JTextField();
@@ -97,16 +72,45 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        dataChooser = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblPatientId = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblPosition = new javax.swing.JLabel();
+        lblSpecialty = new javax.swing.JLabel();
+        lblDoctor = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblHouse = new javax.swing.JLabel();
+        lblAge = new javax.swing.JLabel();
+        lblCommunity = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        lblDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/place order.png"))); // NOI18N
         jLabel1.setText("Doctor Create Encounter for Patient");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 24, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -114,15 +118,75 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1239, 24, -1, 17));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1630, 30, -1, 17));
 
-        jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel2.setText("Encounter List");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 100, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel4.setText("Diagnose");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel3.setText("HeartBeat");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 90, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel15.setText("BloodPressure");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, -1, -1));
+
+        txtHeartBeat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtHeartBeatKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtHeartBeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, 250, -1));
+
+        txtBloodPressure.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBloodPressureKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtBloodPressure, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 720, 250, -1));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel16.setText("Diagnose");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 720, 70, -1));
+
+        txtDiagnose.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDiagnoseKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 670, 250, -1));
+
+        btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 780, -1, -1));
+
+        btnClear.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        btnClear.setText("Clear");
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 780, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel17.setText("Please Choose A Patient to Diagnose");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 630, -1, -1));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Name", "Gender", "Age", "Mobile ", "House", "Community"
+                "ID", "Patient Id", "Name", "gender", "age", "email", "house", "community", "heartBeat", "bloodPressure", "diagnose", "doctor", "specialty", "positionTitle", "status", "date"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,124 +196,92 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 790, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 1170, -1));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel2.setText("Patient List");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, -1, -1));
+        jLabel14.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel14.setText("Specialty");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Diagnose");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel11.setText("Date");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel19.setText("Position");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 540, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel20.setText("Status");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 580, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        jLabel21.setText("Doctor");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
+
+        lblGender.setText("--");
+        getContentPane().add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+
+        lblName.setText("--");
+        getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel10.setText("Community");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel9.setText("House");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
+
+        lblPatientId.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        lblPatientId.setText("00");
+        getContentPane().add(lblPatientId, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel7.setText("ID");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
+
+        lblEmail.setText("--");
+        getContentPane().add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+
+        lblPosition.setText("--");
+        getContentPane().add(lblPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, -1, -1));
+
+        lblSpecialty.setText("--");
+        getContentPane().add(lblSpecialty, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, -1, -1));
+
+        lblDoctor.setText("--");
+        getContentPane().add(lblDoctor, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel22.setText("Email");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jLabel23.setText("Name");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel8.setText("Name");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
-
-        txtName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNameKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 280, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel5.setText("Mobile Number");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
-
-        txtMobileNumber.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtMobileNumber.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtMobileNumberKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 280, -1));
+        jLabel8.setText("Age");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel6.setText("Gender");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
 
-        rbtnMale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        rbtnMale.setText("Male");
-        getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
+        lblHouse.setText("--");
+        getContentPane().add(lblHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
 
-        rbtnFemale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        rbtnFemale.setText("Female");
-        getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+        lblAge.setText("--");
+        getContentPane().add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, -1, -1));
 
-        cbbAge.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
-        getContentPane().add(cbbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
+        lblCommunity.setText("--");
+        getContentPane().add(lblCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel10.setText("Age");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
+        lblStatus.setText("--");
+        getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 580, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel11.setText("House");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel12.setText("Community");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
-
-        getContentPane().add(cbbHouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 280, -1));
-
-        getContentPane().add(cbbCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 280, -1));
-
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel7.setText("Date");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
-
-        lblId.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        lblId.setText("00");
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel13.setText("Community");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel14.setText("Community");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel3.setText("HeartBeat");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel15.setText("BloodPressure");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, -1, -1));
-        getContentPane().add(txtHeartBeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 280, -1));
-        getContentPane().add(txtBloodPressure, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 280, -1));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel16.setText("Diagnose");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, 70, -1));
-        getContentPane().add(txtDiagnose, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 590, 280, -1));
-
-        btnSave.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 650, -1, -1));
-
-        btnClear.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        btnClear.setText("Clear");
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 650, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel17.setText("Please Choose A Patient to Create Encounter");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 640, -1, -1));
-
-        jLabel18.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel18.setText("PatienID");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
-        getContentPane().add(dataChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 280, -1));
+        lblDate.setText("--");
+        getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,77 +289,120 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        DoctorHomePage in=new DoctorHomePage();
+        Index in=new Index();
         in.setVisible(true);
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here
-        
-        int index = jTable1.getSelectedRow();
-        TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,0).toString();
-        lblId.setText(id);
-        String name = model.getValueAt(index,1).toString();
-        txtName.setText(name);
-        
-        String gender = model.getValueAt(index,2).toString();
-        if(gender.equals("Female")){
-            rbtnFemale.isSelected();
-        }
-        if(gender.equals("Female")){
-            rbtnMale.isSelected();
-        }
-        String age = model.getValueAt(index,4).toString();
-        setComboBox(age);
-        String mobileNumbder = model.getValueAt(index,5).toString();
-        txtMobileNumber.setText(mobileNumbder);
-
-        String house = model.getValueAt(index,6).toString();
-        String community = model.getValueAt(index, 7).toString();
-        
-
-        btnSave.setEnabled(true);
-        
-        cbbHouse.removeAllItems();
-        cbbHouse.addItem(house);
-        
-        ArrayList<House> houseList = HouseDao.getAllRecords();
-        Iterator<House> houseItr=houseList.iterator();
-        while(houseItr.hasNext()){
-            House houseObj = houseItr.next();
-            if(!houseObj.getName().equals(house))
-                cbbHouse.addItem(houseObj.getName());
-        }
-        
-        cbbCommunity.removeAllItems();
-        cbbCommunity.addItem(community);
-        
-        ArrayList<Community> communityList = CommunityDao.getAllRecords();
-        Iterator<Community> communityItr=communityList.iterator();
-        while(communityItr.hasNext()){
-            Community communityObj = communityItr.next();
-                if(!communityObj.getName().equals(community))
-                cbbCommunity.addItem(communityObj.getName());
-        }
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_txtNameKeyReleased
-
-    private void txtMobileNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMobileNumberKeyReleased
-        // TODO add your handling code here:
-        validateFields();
-    }//GEN-LAST:event_txtMobileNumberKeyReleased
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        Encounter encounter = new Encounter();
         
+        encounter.setPatientId(lblPatientId.getText());
+        encounter.setName(lblName.getText());
+        encounter.setEmail(lblEmail.getText());
+        encounter.setAge(lblAge.getText());
+        encounter.setGender(lblGender.getText());
+        encounter.setCommunity(lblCommunity.getText());
+        encounter.setHouse(lblHouse.getText());
+
+        encounter.setDoctor(lblDoctor.getText());
+        encounter.setGender(lblGender.getText());
+        encounter.setSpecialty(lblSpecialty.getText());
+        encounter.setPositionTitle(lblPosition.getText());
+        
+        encounter.setDate(lblDate.getText());
+        encounter.setStatus(lblStatus.getText());
+        
+        encounter.setHeartBeat(txtHeartBeat.getText());
+        encounter.setBloodPressure(txtBloodPressure.getText());
+        encounter.setDiagnose(txtDiagnose.getText());
+
+        EncounterDao.save(encounter);
+        setVisible(false);
+        new DoctorCreateEncounter().setVisible(true);
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        //        int index = jTable1.getSelectedRow();
+        //        TableModel model=jTable1.getModel();
+        //        String id = (String)model.getValueAt(index,0).toString();
+        //        String status = model.getValueAt(index,14).toString();
+        //        if(status.equals("true"))
+        //            status="false";
+        //        else
+        //            status="true";
+        //        int a =JOptionPane.showConfirmDialog(null,"Do you want to change status of "+id+"?","Select",JOptionPane.YES_NO_OPTION);
+        //        if(a==0){
+            //            EncounterDao.changeStatus(id,status);
+            //            setVisible(false);
+            //            new ViewEncounter().setVisible(true);
+            //        }
+        int index = jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        String id = model.getValueAt(index,1).toString();
+        lblPatientId.setText(id);
+        String name = model.getValueAt(index,2).toString();
+        lblName.setText(name);
+        String gender = model.getValueAt(index,3).toString();
+        lblGender.setText(gender);
+        String age = model.getValueAt(index,4).toString();
+        lblAge.setText(age);
+        String email = model.getValueAt(index,5).toString();
+        lblEmail.setText(email);
+        String house = model.getValueAt(index,6).toString();
+        lblHouse.setText(house);
+        String community = model.getValueAt(index, 7).toString();
+        lblCommunity.setText(community);
+        String heartBeat = model.getValueAt(index, 8).toString();
+        txtHeartBeat.setText(heartBeat);
+        String bloodPressure = model.getValueAt(index, 9).toString();
+        txtBloodPressure.setText(bloodPressure);
+        String diagnose = model.getValueAt(index, 10).toString();
+        txtDiagnose.setText(diagnose);
+        String docotor = model.getValueAt(index, 11).toString();
+        lblDoctor.setText(docotor);
+        String specialty = model.getValueAt(index, 12).toString();
+        lblSpecialty.setText(specialty);
+        String position = model.getValueAt(index, 13).toString();
+        lblPosition.setText(position);
+        String date = (String)model.getValueAt(index, 15).toString();
+        lblDate.setText(date);
+        String status = model.getValueAt(index, 14).toString();
+        lblStatus.setText(status);
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        dtm.setRowCount(0);
+        
+        ArrayList<Encounter> list = EncounterDao.getAllRecord();
+        Iterator<Encounter> itr = list.iterator();
+        while(itr.hasNext()){
+            Encounter encounterObj = itr.next();
+            dtm.addRow(new Object[]{encounterObj.getId(),encounterObj.getPatientId(),encounterObj.getName(),encounterObj.getGender(),encounterObj.getAge(),encounterObj.getEmail(),encounterObj.getHouse(),encounterObj.getCommunity(),encounterObj.getHeartBeat(),encounterObj.getBloodPressure(),encounterObj.getDiagnose(),encounterObj.getDoctor(),encounterObj.getSpecialty(),encounterObj.getPositionTitle(),encounterObj.getStatus(),encounterObj.getDate()});
+        }
+        
+        
+    }//GEN-LAST:event_formComponentShown
+
+    private void txtHeartBeatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHeartBeatKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtHeartBeatKeyReleased
+
+    private void txtDiagnoseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiagnoseKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtDiagnoseKeyReleased
+
+    private void txtBloodPressureKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBloodPressureKeyReleased
+        // TODO add your handling code here:
+        validateFields();
+    }//GEN-LAST:event_txtBloodPressureKeyReleased
 
     /**
      * @param args the command line arguments
@@ -367,37 +442,42 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cbbAge;
-    private javax.swing.JComboBox<String> cbbCommunity;
-    private javax.swing.JComboBox<String> cbbHouse;
-    private com.toedter.calendar.JDateChooser dataChooser;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblId;
-    private javax.swing.JRadioButton rbtnFemale;
-    private javax.swing.JRadioButton rbtnMale;
+    private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblCommunity;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDoctor;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblHouse;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPatientId;
+    private javax.swing.JLabel lblPosition;
+    private javax.swing.JLabel lblSpecialty;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JTextField txtBloodPressure;
     private javax.swing.JTextField txtDiagnose;
     private javax.swing.JTextField txtHeartBeat;
-    private javax.swing.JTextField txtMobileNumber;
-    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

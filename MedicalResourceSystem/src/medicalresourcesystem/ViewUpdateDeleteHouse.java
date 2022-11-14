@@ -83,7 +83,7 @@ public class ViewUpdateDeleteHouse extends javax.swing.JFrame {
         jLabel5.setText("Name");
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel3.setText("*Click on row to delete House");
+        jLabel3.setText("*Click on row to View House");
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(

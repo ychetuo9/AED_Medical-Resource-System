@@ -67,6 +67,7 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -106,11 +107,11 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel4.setText("Add new Patient");
+        jLabel4.setText("Patient Details");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel3.setText("*Click on row to Delete Patient");
+        jLabel3.setText("*Click on row to View Patient");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 640, -1, -1));
 
         jTable1.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
@@ -137,7 +138,7 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/category.png"))); // NOI18N
-        jLabel1.setText("View Update&Delete Patient");
+        jLabel1.setText("View Update & Delete Patient");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 48, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
@@ -188,16 +189,18 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
         jLabel6.setText("Gender");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
 
+        buttonGroup1.add(rbtnMale);
         rbtnMale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnMale.setText("Male");
         getContentPane().add(rbtnMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
+        buttonGroup1.add(rbtnFemale);
         rbtnFemale.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         rbtnFemale.setText("Female");
         getContentPane().add(rbtnFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         cbbAge.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+        cbbAge.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
         getContentPane().add(cbbAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -279,10 +282,10 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
         txtEmail.setText(email);
         String gender = model.getValueAt(index,3).toString();
         if(gender.equals("Female")){
-            rbtnFemale.isSelected();
+            rbtnFemale.setSelected(true);
         }
-        if(gender.equals("Female")){
-            rbtnMale.isSelected();
+        if(gender.equals("Male")){
+            rbtnMale.setSelected(true);
         }
         String age = model.getValueAt(index,4).toString();
         setComboBox(age);
@@ -374,7 +377,7 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
 
         PatientDirectoryDao.update(patient);
         setVisible(false);
-        new CreateDeletePatient().setVisible(true);
+        new ViewUpdateDeletePatient().setVisible(true);
         
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -400,7 +403,7 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
         Iterator<Patient> itrPatient = patientList.iterator();
         while(itrPatient.hasNext()){
             Patient patientObj = itrPatient.next();
-            dtm.addRow(new Object[]{patientObj.getId(),patientObj.getName(),patientObj.getEmail(),patientObj.getAge(),patientObj.getMobileNumber(),patientObj.getHouse(),patientObj.getCommunity(),patientObj.getAddress()});
+            dtm.addRow(new Object[]{patientObj.getId(),patientObj.getName(),patientObj.getEmail(),patientObj.getGender(),patientObj.getAge(),patientObj.getMobileNumber(),patientObj.getHouse(),patientObj.getCommunity(),patientObj.getAddress()});
         }
         
         ArrayList<Community> communityList = CommunityDao.getAllRecords();
@@ -458,6 +461,7 @@ public class ViewUpdateDeletePatient extends javax.swing.JFrame {
     private javax.swing.JButton btnClear1;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbAge;
     private javax.swing.JComboBox<String> cbbCommunity;
     private javax.swing.JComboBox<String> cbbHouse;
