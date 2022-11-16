@@ -98,6 +98,8 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         lblCommunity = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -126,7 +128,7 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel4.setText("Diagnose");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel3.setText("HeartBeat");
@@ -203,8 +205,8 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
-        jLabel11.setText("Date");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+        jLabel11.setText("Encounter ID");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         jLabel19.setText("Position");
@@ -283,6 +285,13 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         lblDate.setText("--");
         getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Helvetica Neue", 1, 15)); // NOI18N
+        jLabel12.setText("Date");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
+
+        lblId.setText("--");
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -299,6 +308,7 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
         // TODO add your handling code here:
         Encounter encounter = new Encounter();
         
+        encounter.setId(lblId.getText());
         encounter.setPatientId(lblPatientId.getText());
         encounter.setName(lblName.getText());
         encounter.setEmail(lblEmail.getText());
@@ -342,8 +352,10 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
             //        }
         int index = jTable1.getSelectedRow();
         TableModel model=jTable1.getModel();
-        String id = model.getValueAt(index,1).toString();
-        lblPatientId.setText(id);
+        String id = model.getValueAt(index, 0).toString();
+        lblId.setText(id);
+        String patientId = model.getValueAt(index,1).toString();
+        lblPatientId.setText(patientId);
         String name = model.getValueAt(index,2).toString();
         lblName.setText(name);
         String gender = model.getValueAt(index,3).toString();
@@ -446,6 +458,7 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -471,6 +484,7 @@ public class DoctorCreateEncounter extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblHouse;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPatientId;
     private javax.swing.JLabel lblPosition;

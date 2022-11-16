@@ -225,6 +225,7 @@ public class DoctorSugnUpPage extends javax.swing.JFrame {
 
         getContentPane().add(cbbHospital, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 373, -1));
 
+        cbbPositionTitle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Medical Doctor", "Doctor of Osteopathy", "Nurse Practitioner", "Physical Assistant" }));
         getContentPane().add(cbbPositionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 373, -1));
 
         pack();

@@ -183,7 +183,7 @@ public class DoctorLogin extends javax.swing.JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        SignUpPage in=new SignUpPage();
+        DoctorSugnUpPage in=new DoctorSugnUpPage();
         in.setVisible(true);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
